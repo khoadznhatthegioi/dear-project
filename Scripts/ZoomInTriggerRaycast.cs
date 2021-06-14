@@ -172,7 +172,7 @@ using ExamineSystem;
                                         if (invisibleObject1)
                                             invisibleObject1.SetActive(false);
                                         buttonOnObject.SetActive(true);
-                                       PlayerData.nhinChaiBia = true;
+                                        PlayerData.nhinChaiBia = true;
                                         Debug.Log("addudududu");
                                         //yield return StartCoroutine(waiter1());
                                         //IEnumerator waiter1()

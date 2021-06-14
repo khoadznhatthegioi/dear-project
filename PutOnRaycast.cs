@@ -26,6 +26,7 @@ using ExamineSystem;
         private const string showNameTag = "ShowName";
         public InventoryDisappear inventoryDisappear;
         [SerializeField] RectTransform rectTransform;
+        public AudioSource alarmSound;
 
         // Start is called before the first frame update
         void Start()
@@ -77,6 +78,24 @@ using ExamineSystem;
                             PlayerData.nhinViolinStand = true;
                        PlayerData.nhinBoNhang = true;
                         }
+
+                    }
+                }
+                if (hit.collider.CompareTag("AlarmClock"))
+                {
+                    if (!interacting)
+                    {
+                        raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
+                        //raycasted_obj.MainHighlight(true);
+                        CrosshairChange(true);
+                    }
+                    isCrosshairActive = true;
+                    interacting = true;
+
+                    if (Input.GetKeyDown(ExamineInputManager.instance.interactKey))
+                    {
+
+                    PlayerStats.isAlarmTurnedOff = true;
 
                     }
                 }

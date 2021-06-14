@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityStandardAssets.ImageEffects;
 
@@ -33,6 +34,7 @@ namespace ExamineSystem
         public GameObject violinBieuDien;
         public GameObject boNhang;
         public GameObject laBua;
+        public static bool videoLoaded;
         public ZoomInTriggerRaycast zoom;
         //public GameObject imageObject;
         public GameObject caiInventory;
@@ -44,7 +46,10 @@ namespace ExamineSystem
         public int Y_SPACE_BETWEEN_ITEMS;
         public InventoryDisappear sth;
         public RectTransform rectTransform;
-
+        public static bool sceneLoaded;
+        public static bool sceneLoaded1;
+        public static bool sceneLoaded2;
+        public static bool sceneLoaded3;
         public GameObject chaiBiaCamera;
         public GameObject player;
         public ExamineRaycast examineRaycast;
@@ -55,6 +60,7 @@ namespace ExamineSystem
         [SerializeField] Sprite boNhangSprite;
         [SerializeField] Sprite batLuaSprite;
         [SerializeField] Sprite laBuaSprite;
+        [SerializeField] Sprite gateKeySprite;
         Dictionary<GameObject, InventorySlot> itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
         private void Awake()
         {
@@ -75,11 +81,11 @@ namespace ExamineSystem
         void Update()
         {
             UpdateSlots();
-            /*if (boolTestRemove)
-                if (boolTestRemove.activeInHierarchy == true)
-                {
+            //if (boolTestRemove)
+            //    if (boolTestRemove.activeInHierarchy == true)
+            //    {
 
-                }*/
+            //    }
         }
         public void UpdateAfterThapNhang(GameObject obj)
         {
@@ -272,16 +278,17 @@ namespace ExamineSystem
                         volumeNoiChuyen.SetActive(true);
                         denTvBat.SetActive(true);
                         //saveSystem.Save();
-
-                        PlayerData.firstSaved = true;
                         StartCoroutine(SauCuocNoiChuyen());
 
 
                         IEnumerator SauCuocNoiChuyen()
                         {
                             yield return new WaitForSeconds(35f);
-                            danViolin.SetActive(true);
+                            //danViolin.SetActive(true);
                             volumeNoiChuyen.SetActive(false);
+
+                            sceneLoaded = true;
+                            PlayerData.firstSaved = true;
                         }
                         //sudungrasaoghivaoday(nhuanimation,...)                        
                     }
@@ -312,6 +319,7 @@ namespace ExamineSystem
                         player.SetActive(true);
                         PlayerData.nhinViolinStand = false;
                         //playerStats.SavePlayer();
+                        sceneLoaded1 = true;
                         PlayerData.secondSaved = true;
                         //sudungrasaoghivaoday(nhuanimation,...)                        
                     }
@@ -355,6 +363,8 @@ namespace ExamineSystem
                             //playerTransform1.enabled = true;
                             
                             laBua.SetActive(true);
+                            sceneLoaded3 = true;
+                            PlayerData.fifthSaved = true;
                         }
                         //laBua.SetActive(true);
                         //sudungrasaoghivaoday(nhuanimation,...)                  
@@ -374,30 +384,35 @@ namespace ExamineSystem
                         sth.blur.enabled = false;
                         sth.bgi.SetActive(false);
                         sth.crosshair.enabled = true;
-                        sth.player.enabled = true;
+                        sth.player.enabled = false;
                         Time.timeScale = 1f;
                         sth.blurOut.SetActive(false);
                         (sth.mainCam.GetComponent(sth.examineRay) as MonoBehaviour).enabled = true;
                         sth.isInventoryAlreadyOn = false;
                         if (diary)
                             Destroy(diary);
+                        sceneLoaded2 = true;
+                        videoLoaded = true;
+                        PlayerData.thirdSaved = true;
                         video.SetActive(true);
+
+                        player.SetActive(true);
                         StartCoroutine(waiter());
-                        PlayerData.isVideoPlayed = true;
+                        //PlayerData.isVideoPlayed = true;
                         
                         IEnumerator waiter()
                         {
-                            yield return new WaitForSeconds(56f);
+                            yield return new WaitForSeconds(58f);
                             video.SetActive(false);
-                            player.SetActive(true);
                             //ban.SetActive(true);
+                            sth.player.enabled = true;
                             //nhungcaighe.SetActive(true);
                             //thaydoiquakhuctieptheo
                             //denchieuvao
                             //tv dc di chuyen qua cho khac
                             if (violinBieuDien)
                                 violinBieuDien.SetActive(true);
-                            PlayerData.isVideoPlayed = false;
+                            //PlayerData.isVideoPlayed = false;
                         }
                     }
                 }
@@ -421,8 +436,8 @@ namespace ExamineSystem
                         (sth.mainCam.GetComponent(sth.examineRay) as MonoBehaviour).enabled = true;
                         sth.isInventoryAlreadyOn = false;
                         //if (boNhangCollider)
-                            //Destroy(boNhangCollider);
-                        //dadatviolin= true
+                        //    Destroy(boNhangCollider);
+                        //dadatviolin = true
                         // them nhung mon do tren tuong,...
                         //them mot cai volume chay qua
                         player.SetActive(true);
@@ -430,6 +445,39 @@ namespace ExamineSystem
                         //boNhang.SetActive(false);
                         triggerQuaiVat.isQuaiVatAwake = false;
                         PlayerData.usedAmulet = true;
+                    }
+                }
+
+                if (inventory.database.GetItem[itemsDisplayed[obj].ID].uiDisplay == gateKeySprite)
+                {
+                    if (TriggerMoCua.isDungTruocCua)
+                    {
+                        inventory.RemoveItem(itemsDisplayed[obj].item);
+                        Debug.Log("hoho");
+                        position.x = 6666;
+                        rectTransform.position = position;
+                        Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
+                        sth.blur.enabled = false;
+                        sth.bgi.SetActive(false);
+                        sth.crosshair.enabled = true;
+                        sth.player.enabled = true;
+                        Time.timeScale = 1f;
+                        sth.blurOut.SetActive(false);
+                        (sth.mainCam.GetComponent(sth.examineRay) as MonoBehaviour).enabled = true;
+                        sth.isInventoryAlreadyOn = false;
+                        //if (boNhangCollider)
+                        //Destroy(boNhangCollider);
+                        //dadatviolin= true
+                        // them nhung mon do tren tuong,...
+                        //them mot cai volume chay qua
+                        player.SetActive(true);
+                        PlayerData.eighthSaved = true;
+                        //nhinBoNhang = false;
+                        //boNhang.SetActive(false);
+                        TriggerMoCua.isDungTruocCua = false;
+                        SceneManager.LoadScene("level5");
+                        
                     }
                 }
 

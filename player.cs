@@ -9,6 +9,7 @@ public class player : MonoBehaviour
     public GameObject seenObject;
     public GameObject seenObject1;
     public GameObject seenObject3;
+    public GameObject seenObject4;
     [SerializeField] DisplayInventory displayInventory;
 
     public void OnTriggerStay(Collider other)
@@ -51,6 +52,18 @@ public class player : MonoBehaviour
                             PlayerData.daLayLaBua = true;
                     }
                 }
+            if(seenObject4)
+            {
+                if(seenObject4.activeInHierarchy == true)
+                {
+                    var item = other.GetComponent<GroundItem>();
+                    if (item)
+                    {
+                        inventory.AddItem(new Item(item.item), 1);
+                        seenObject4.SetActive(false);
+                    }
+                }
+            }
         }
         
 
