@@ -17,6 +17,7 @@ public class AppearAfterDaSua : MonoBehaviour
         {
             doKhui.SetActive(true);
             //bat tv
+            this.enabled = false;
         }
     }
 }

@@ -19,7 +19,7 @@ public class player : MonoBehaviour
             if (seenObject)
                 if (seenObject.activeInHierarchy == true)
                 {
-                    Debug.Log("ok");
+                    ///Debug.Log("ok");
                     var item = other.GetComponent<GroundItem>();
                     if (item)
                     {
@@ -31,7 +31,7 @@ public class player : MonoBehaviour
             if (seenObject1)
                 if (seenObject1.activeInHierarchy == true)
                 {
-                    Debug.Log("ok");
+                   //Debug.Log("ok");
                     var item = other.GetComponent<GroundItem>();
                     if (item)
                     {
@@ -42,7 +42,7 @@ public class player : MonoBehaviour
             if (seenObject3)
                 if (seenObject3.activeInHierarchy == true)
                 {
-                    Debug.Log("ok");
+                    //Debug.Log("ok");
                     var item = other.GetComponent<GroundItem>();
                     if (item)
                     {

@@ -1461,7 +1461,6 @@ MonoBehaviour:
   blurOut: {fileID: 1441185644}
   crosshair: {fileID: 1120714049}
   player: {fileID: 489762775}
-  blur: {fileID: 489762774}
   isListAlreadyOn: 0
   displayInventory: {fileID: 1481854409}
   inventoryDisappear: {fileID: 1481854408}
@@ -1472,6 +1471,8 @@ MonoBehaviour:
   - {fileID: 2117927864}
   - {fileID: 875216251}
   - {fileID: 1468633174}
+  giongNoiChuyen: []
+  alreadyPlayed: 
 --- !u!4 &472996166
 Transform:
   m_ObjectHideFlags: 0
@@ -1698,18 +1699,6 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 489762771}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &489762774 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1840235040367222406, guid: a957311ee8f334f4db68811f264ea071,
-    type: 3}
-  m_PrefabInstance: {fileID: 489762771}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489762776}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc6bde01469c7b4badee5362f191d96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &489762775 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
@@ -1795,6 +1784,8 @@ MonoBehaviour:
   documents:
   - {fileID: 412093687}
   - {fileID: 1310128673}
+  loadingScreen: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!114 &489762782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1815,11 +1806,17 @@ MonoBehaviour:
   nha: {fileID: 0}
   player: {fileID: 489762775}
   ban: {fileID: 0}
+  panel: {fileID: 0}
   cua: {fileID: 0}
   triggerCua: {fileID: 0}
+  playerObject: {fileID: 0}
+  playerObject1: {fileID: 0}
+  mainCamera: {fileID: 0}
+  examineCamera: {fileID: 0}
   isLoaded2: 0
   isLoaded: 0
   nhungThuBenKia: {fileID: 0}
+  playerStats: {fileID: 0}
   openDoorKey: 323
   crosshair: {fileID: 0}
 --- !u!114 &489762783
@@ -1861,13 +1858,14 @@ MonoBehaviour:
   zoomInRay: 
   isInteracting: 0
   displayInventory: {fileID: 1481854409}
-  openDoorKey: 323
   uiCrosshair: {fileID: 0}
   interacting: 0
   inventoryDisappear: {fileID: 1481854408}
   rectTransform: {fileID: 1481854405}
   alarmSound: {fileID: 3199965256257147592, guid: c7b5eb96d9640204f857ec26256f4858,
     type: 3}
+  objectName: {fileID: 0}
+  animatorText: {fileID: 0}
 --- !u!114 &489762785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1890,21 +1888,6 @@ MonoBehaviour:
   daLayBoNhang: 0
   uiCrosshair: {fileID: 0}
   interacting: 0
---- !u!114 &489762786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489762779}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 023365f43f5138a4fb948a04774d9a56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 3
-  movementSpeed: 5
-  upDownRange: 60
 --- !u!114 &489762787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1922,6 +1905,8 @@ MonoBehaviour:
   clickSound: {fileID: 812265474}
   flashlight: {fileID: 1199556198}
   failSafe: 0
+  documentsList: {fileID: 0}
+  inventoryDisappear: {fileID: 0}
 --- !u!114 &489762788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1940,18 +1925,6 @@ MonoBehaviour:
   seenObject3: {fileID: 0}
   seenObject4: {fileID: 0}
   displayInventory: {fileID: 1481854409}
---- !u!114 &489762789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 489762779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b011e82edb8c0784fbaa61d43e965abe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &489762790
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4836,10 +4809,10 @@ MonoBehaviour:
   bgi: {fileID: 2087866687}
   mainCam: {fileID: 489762776}
   examineRay: ExamineRaycast
+  rectTransform: {fileID: 0}
   blurOut: {fileID: 1441185644}
   crosshair: {fileID: 1120714049}
   player: {fileID: 489762775}
-  blur: {fileID: 489762774}
   isInventoryAlreadyOn: 0
   displayInventory: {fileID: 1481854409}
   violinUi: {fileID: 601705532}
@@ -4858,6 +4831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab47ae2a6602f704b9bdf0073f40bcb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  documentsList: {fileID: 0}
   boolTestRemove: {fileID: 0}
   saveSystem: {fileID: 0}
   triggerQuaiVat: {fileID: 0}
@@ -5888,7 +5862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1971713173
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Collections; 
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ExamineSystem;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -45,16 +45,33 @@ public class PlayerStats : MonoBehaviour
     public static bool check10;
     public static bool check20;
     public static bool check21;
+    public static bool check22;
     public GameObject panel1;
+
+
+    public static bool isRight;
     [Header("Documents")]
     public GameObject[] documents;
 
-
+    [Header("LoadingScreen")]
+    public GameObject loadingScreen;
+    public Slider slider;
+    public GameObject imageLoading;
     PlayerData data;
     // [SerializeField] public PlayerData playerData;
-   
+ 
     private void Update()
     {
+        if ( isRight == true)
+        {
+            if (panel1)
+            {
+                panel1.SetActive(true);
+                
+                
+            }
+            
+        }
         if(SaveSystem.isNewGame == false && check10 == false)
         {
             if(panel1)
@@ -69,7 +86,10 @@ public class PlayerStats : MonoBehaviour
                 saveSystem.Save();
                 if (DisplayInventory.sceneLoaded == false && check11 == false)
                 {
-                    SceneManager.LoadScene("level1");
+                    //SceneManager.LoadSceneAsync("level1");
+                    StartCoroutine(LoadAsynchronously("level1"));
+
+                    
                     check11 = true;
                 }
                 
@@ -86,7 +106,7 @@ public class PlayerStats : MonoBehaviour
                     if (PlayerData.secondSaved == false && PlayerData.thirdSaved == false && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false && PlayerData.seventhSaved == false && DisplayInventory.sceneLoaded == false)
                     {
                         //fpsc.enabled = false;
-                        fpsController.transform.position = new Vector3(1, 1, -2);
+                        fpsController.transform.position = new Vector3(1, 0.88f, -2);
                         StartCoroutine(Cho1());
                         IEnumerator Cho1()
                         {
@@ -115,7 +135,8 @@ public class PlayerStats : MonoBehaviour
 
 
                     //panel1.SetActive(true);
-                    SceneManager.LoadScene("level1");
+                    //SceneManager.LoadScene("level1");
+                    StartCoroutine(LoadAsynchronously("level1"));
                     check12 = true;
                 }
                 StartCoroutine(WaitSceneLoad1());
@@ -132,7 +153,7 @@ public class PlayerStats : MonoBehaviour
                     if(PlayerData.thirdSaved == false && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false && PlayerData.seventhSaved == false && DisplayInventory.sceneLoaded1 == false)
                     {
                         //fpsc.enabled = false;
-                        fpsController.transform.position = new Vector3(1, 1, 11);
+                        fpsController.transform.position = new Vector3(1, 0.88f, 11);
                         StartCoroutine(Cho2());
                         IEnumerator Cho2()
                         {
@@ -150,7 +171,7 @@ public class PlayerStats : MonoBehaviour
         {
             if (PlayerData.thirdSaved == true)
             {
-                Debug.Log("ASDJsakjdsklajdklsajdsklajdklasjdsklajdklsajdsklajdkslajdiowqdjiojdskajdwi");
+                //Debug.Log("ASDJsakjdsklajdklsajdsklajdklasjdsklajdklsajdsklajdkslajdiowqdjiojdskajdwi");
                 inventoryObject.Save();
                 saveSystem.Save();
                 if(DisplayInventory.sceneLoaded2 == false && check13 == false)
@@ -158,7 +179,7 @@ public class PlayerStats : MonoBehaviour
 
 
                     //panel1.SetActive(true);
-                    SceneManager.LoadScene("level1");
+                    StartCoroutine(LoadAsynchronously("level1"));
                     check13 = true;
                 }
                 StartCoroutine(WaitSceneLoad2());
@@ -170,7 +191,7 @@ public class PlayerStats : MonoBehaviour
 
                     {
                         //fpsc.enabled = false;
-                        fpsController.transform.position = new Vector3(1, 1, 5);
+                        fpsController.transform.position = new Vector3(1, 0.88f, 5);
                         video.SetActive(true);
                         if (diary)
                             Destroy(diary);
@@ -208,7 +229,7 @@ public class PlayerStats : MonoBehaviour
             {
                 //panel1.SetActive(true);
                 //dung cai khac de lam cutscene dau level3
-                SceneManager.LoadScene("level3");
+                StartCoroutine(LoadAsynchronously("level3"));
                 inventoryObject.Save();
                 saveSystem.Save();
                 check4 = true;
@@ -229,7 +250,7 @@ public class PlayerStats : MonoBehaviour
 
 
                     //panel1.SetActive(true);
-                    SceneManager.LoadScene("level3");
+                    StartCoroutine(LoadAsynchronously("level3"));
                     check14 = true;
                 }
                 StartCoroutine(Waiter());
@@ -240,7 +261,7 @@ public class PlayerStats : MonoBehaviour
                     {
 
                        // fpsc.enabled = false;
-                        fpsController.transform.position = new Vector3(-4, 1, -1);
+                        fpsController.transform.position = new Vector3(-4, 0.88f, -1);
                         StartCoroutine(Cho3());
                         IEnumerator Cho3()
                         {
@@ -271,7 +292,7 @@ public class PlayerStats : MonoBehaviour
 
 
                     //panel1.SetActive(true);
-                    SceneManager.LoadScene("level3");
+                    StartCoroutine(LoadAsynchronously("level3"));
                     SceneManager.LoadSceneAsync("Zoo", LoadSceneMode.Additive);
                     check15 = true;
                 }
@@ -286,7 +307,7 @@ public class PlayerStats : MonoBehaviour
                     if (PlayerData.seventhSaved == false && BasicDoorRaycast.sceneLoaded1 == false)
                     {
                         //fpsc.enabled = false;
-                        fpsController.transform.position = new Vector3(1, 1, 6);
+                        fpsController.transform.position = new Vector3(1, 0.88f, 6);
                         StartCoroutine(Cho4());
                         IEnumerator Cho4()
                         {
@@ -345,7 +366,7 @@ public class PlayerStats : MonoBehaviour
                         StartCoroutine(Cho6());
                         IEnumerator Cho6()
                         {
-                            yield return new WaitForSeconds(0.2f);
+                            yield return new WaitForSeconds(0.3f);
 
                             SceneManager.UnloadSceneAsync("Zoo", UnloadSceneOptions.None);
                             check17 = true;
@@ -359,7 +380,7 @@ public class PlayerStats : MonoBehaviour
                     if (BasicDoorRaycast.sceneLoaded2 == false)
                     {
                         //fpsc.enabled = false;
-                        fpsController.transform.position = new Vector3(1, 1, 6);
+                        fpsController.transform.position = new Vector3(1, 0.88f, 6);
                         
                         StartCoroutine(Waitere());
                         IEnumerator Waitere()
@@ -406,6 +427,19 @@ public class PlayerStats : MonoBehaviour
                 }
             }
         }
+
+        if(check22 == false)
+        {
+            if(PlayerData.document2 == true)
+            {
+                StartCoroutine(wait());
+                IEnumerator wait()
+                {
+                    yield return new WaitForSeconds(2f);
+                    documents[1].SetActive(true);
+                }
+            }
+        }
        
 
     }
@@ -426,5 +460,60 @@ public class PlayerStats : MonoBehaviour
         //transform.position = position;
         saveSystem.Load();
         inventoryObject.Load();
+    }
+    public IEnumerator LoadAsynchronously(string sceneName)
+    {
+
+        imageLoading.SetActive(true);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+
+        loadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+
+            //float progress = Mathf.Clamp01(operation.progress / .9f);
+            //slider.value = progress;
+        //    imageLoading.SetActive(true);
+            yield return null;
+        }
+    }
+    //public static PlayerStats instance;
+
+    
+
+
+    public IEnumerator LoadAsynchronouslyAdditive(string sceneName)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        loadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+            slider.value = progress;
+            yield return null;
+        }
+        if (operation.isDone)
+        {
+            loadingScreen.SetActive(false);
+        }
+    }
+
+    public IEnumerator LoadUnloadAsynchronously(string sceneNameLoad, string sceneNameUnload)
+    {
+        AsyncOperation operation1 = SceneManager.LoadSceneAsync(sceneNameLoad, LoadSceneMode.Additive);
+        AsyncOperation operation2 = SceneManager.UnloadSceneAsync(sceneNameUnload);
+
+        while(!operation1.isDone && !operation2.isDone)
+        {
+            float progress = Mathf.Clamp01((operation1.progress + operation2.progress) / .9f);
+            slider.value = progress;
+            yield return null;
+        }
+        if (operation1.isDone && operation2.isDone)
+        {
+            loadingScreen.SetActive(false);
+        }
     }
 }

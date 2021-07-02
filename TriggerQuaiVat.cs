@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ExamineSystem;
 
 public class TriggerQuaiVat : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class TriggerQuaiVat : MonoBehaviour
     public bool isQuaiVatAwake;
     public GameObject triggerCua;
     public GameObject cua;
+    //public GiayTestRaycast giayTestRaycast;
     //public Animator cuaCua;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("LUKYSADSJHJKDHSJHD");
+            //Debug.Log("LUKYSADSJHJKDHSJHD");
+            //giayTestRaycast.enabled = true;
             isQuaiVatAwake = true;
             triggerCua.SetActive(true);
             cua.SetActive(true);

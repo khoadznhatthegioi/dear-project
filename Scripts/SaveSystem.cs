@@ -2,10 +2,8 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
-using UnityStandardAssets.Characters.FirstPerson;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson; 
+using ExamineSystem;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -19,12 +17,15 @@ public class SaveSystem : MonoBehaviour
     public InventoryObject inventoryObject;
     public bool checkSaving;
     public static bool isNewGame =true;
+    public GameObject imageSave;
     //[ContextMenu("Save")]
     public void Save()
     {
         //string json = JsonUtility.ToJson(playerData);
-        Debug.Log("sth");
+        //Debug.Log("sth");
         //File.WriteAllText($"{Application.persistentDataPath}/save.dchanthavy", json); 
+        if(DisplayInventory.sceneLoaded == true || DisplayInventory.sceneLoaded1 == true || DisplayInventory.sceneLoaded2 || DisplayInventory.sceneLoaded3 || BasicDoorRaycast.sceneLoaded1 || BasicDoorRaycast.sceneLoaded2)
+            imageSave.SetActive(true);
         var bf = new BinaryFormatter();
         FileStream file = File.Create($"{Application.persistentDataPath}/save.dchanthavy");
         bf.Serialize(file, playerData);
@@ -35,7 +36,7 @@ public class SaveSystem : MonoBehaviour
     {
 
         isNewGame = false;
-        if (!File.Exists($"{Application.persistentDataPath}/save.dchanthavy")) { return; }
+        //if (!File.Exists($"{Application.persistentDataPath}/save.dchanthavy")) { return; }
         //string json = File.ReadAllText($"{Application.persistentDataPath}/save.dchanthavy");
         //playerData = JsonUtility.FromJson<PlayerData>(json);
         var bf = new BinaryFormatter();
@@ -45,84 +46,84 @@ public class SaveSystem : MonoBehaviour
         inventoryObject.Load();
         //if (checkSaving == false)
         //{
-        StartCoroutine(Waiter());
-        IEnumerator Waiter()
-        {
-            yield return new WaitForSeconds(2f);
-            //if (PlayerData.firstSaved == true && PlayerData.secondSaved == false && PlayerData.thirdSaved == false && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false)
-            //{
-            //    Debug.Log("asdasd");
-                //fpsc.enabled = false;
-            //    GameObject.Find("FPSController_Prefab").transform.position = new Vector3(1, 1, -2);
-            //    fpsController.transform.eulerAngles = new Vector3(0, 75, 0);
-             ////   playerCamera.transform.eulerAngles = new Vector3(14, 0, 0);
-             //   StartCoroutine(Waiter1());
-            //    IEnumerator Waiter1()
-            //    {
-             //       yield return new WaitForSeconds(0.1f);
-             //       //fpsc.enabled = true;
-             //   }
-                //checkSaving = true;
-          //  }
-         //   if(PlayerData.secondSaved == true && PlayerData.thirdSaved == false && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false)
+        //    StartCoroutine(Waiter());
+        //    IEnumerator Waiter()
         //    {
-
-        //        Debug.Log("asdasdsadsadsadsadsadsadsadsadsadsadsadsadsadsdsadsadasdsadas");
-         //       fpsc.enabled = false;
-          //      fpsController.transform.position = new Vector3(3, 1, 3);
-           //     //fpsController.transform.eulerAngles = new Vector3(0, 75, 0);
-            //    //playerCamera.transform.eulerAngles = new Vector3(14, 0, 0);
-            //    StartCoroutine(Waiter2());
-            //    IEnumerator Waiter2()
-            //    {
-            //        yield return new WaitForSeconds(0.1f);
-            //        fpsc.enabled = true;
-            //    }
-          //  }
-          //
-          //  if (PlayerData.thirdSaved == true && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false) 
-          //  {
-          //      fpsc.enabled = false;
-         //       video.SetActive(true);
-          //      violin.SetActive(true);
-                //fpsController.transform.position = new Vector3(1, 1, -2);
-                //fpsController.transform.eulerAngles = new Vector3(0, 75, 0);
-                //playerCamera.transform.eulerAngles = new Vector3(14, 0, 0);
-         //       StartCoroutine(Waiter3());
-          //      IEnumerator Waiter3()
-         //       {
-         //           yield return new WaitForSeconds(0.1f);
-         //           fpsc.enabled = true;
-         //       }
-        //    }
-        //    if(PlayerData.fifthSaved == true && PlayerData.sixthSaved == false && PlayerData.seventhSaved == false)
-         //   {
-         //       fpsc.enabled = false;
-        //        fpsController.transform.position = new Vector3(-5, 1, -1);
-        //        //fpsController.transform.eulerAngles = new Vector3(0, 75, 0);
-        //        //p/layerCamera.transform.eulerAngles = new Vector3(14, 0, 0);
-         //       StartCoroutine(Waiter5());
-        //        IEnumerator Waiter5()
+        //        yield return new WaitForSeconds(2f);
+        //        if (PlayerData.firstSaved == true && PlayerData.secondSaved == false && PlayerData.thirdSaved == false && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false)
         //        {
-       //             yield return new WaitForSeconds(0.1f);
-        //            fpsc.enabled = true;
-       //         }
-      //      }
-      //      if (PlayerData.sixthSaved == true && PlayerData.seventhSaved == false)
-      //      {
-      //          Debug.Log("asdhasjdhjkashdjskahdjksahdjkashdjkahd");
-     //           fpsc.enabled = false;
-    //            fpsController.transform.position = new Vector3(1, 1, 6);
-    ////            StartCoroutine(Waiter4());
-       //         IEnumerator Waiter4()
-      //          {
-       //             yield return new WaitForSeconds(0.1f);
-        //            fpsc.enabled = true;
-      //          }
-      //      }
-    //    }
-            
-        }
+        //            Debug.Log("asdasd");
+        //            fpsc.enabled = false;
+        //            GameObject.Find("FPSController_Prefab").transform.position = new Vector3(1, 1, -2);
+        //            fpsController.transform.eulerAngles = new Vector3(0, 75, 0);
+        //            //   playerCamera.transform.eulerAngles = new Vector3(14, 0, 0);
+        //            StartCoroutine(Waiter1());
+        //            IEnumerator Waiter1()
+        //            {
+        //                yield return new WaitForSeconds(0.1f);
+        //                //fpsc.enabled = true;
+        //            }
+        //            checkSaving = true;
+        //        }
+        //        if (PlayerData.secondSaved == true && PlayerData.thirdSaved == false && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false)
+        //        {
+
+        //            Debug.Log("asdasdsadsadsadsadsadsadsadsadsadsadsadsadsadsdsadsadasdsadas");
+        //            fpsc.enabled = false;
+        //            fpsController.transform.position = new Vector3(3, 1, 3);
+        //            //fpsController.transform.eulerAngles = new Vector3(0, 75, 0);
+        //            //playerCamera.transform.eulerAngles = new Vector3(14, 0, 0);
+        //            StartCoroutine(Waiter2());
+        //            IEnumerator Waiter2()
+        //            {
+        //                yield return new WaitForSeconds(0.1f);
+        //                fpsc.enabled = true;
+        //            }
+        //        }
+
+        //        if (PlayerData.thirdSaved == true && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false)
+        //        {
+        //            fpsc.enabled = false;
+        //            video.SetActive(true);
+        //            violin.SetActive(true);
+        //            fpsController.transform.position = new Vector3(1, 1, -2);
+        //            fpsController.transform.eulerAngles = new Vector3(0, 75, 0);
+        //            playerCamera.transform.eulerAngles = new Vector3(14, 0, 0);
+        //            StartCoroutine(Waiter3());
+        //            IEnumerator Waiter3()
+        //            {
+        //                yield return new WaitForSeconds(0.1f);
+        //                fpsc.enabled = true;
+        //            }
+        //        }
+        //        if (PlayerData.fifthSaved == true && PlayerData.sixthSaved == false && PlayerData.seventhSaved == false)
+        //        {
+        //            fpsc.enabled = false;
+        //            fpsController.transform.position = new Vector3(-5, 1, -1);
+        //            //fpsController.transform.eulerAngles = new Vector3(0, 75, 0);
+        //            //p/layerCamera.transform.eulerAngles = new Vector3(14, 0, 0);
+        //            StartCoroutine(Waiter5());
+        //            IEnumerator Waiter5()
+        //            {
+        //                yield return new WaitForSeconds(0.1f);
+        //                fpsc.enabled = true;
+        //            }
+        //        }
+        //        if (PlayerData.sixthSaved == true && PlayerData.seventhSaved == false)
+        //        {
+        //            Debug.Log("asdhasjdhjkashdjskahdjksahdjkashdjkahd");
+        //            fpsc.enabled = false;
+        //            fpsController.transform.position = new Vector3(1, 1, 6);
+        //            //            StartCoroutine(Waiter4());
+        //            IEnumerator Waiter4()
+        //            {
+        //                yield return new WaitForSeconds(0.1f);
+        //                fpsc.enabled = true;
+        //            }
+        //        }
+        //    }
+
+        //}
     }
 
     private void Start()
@@ -179,6 +180,12 @@ public class SaveSystem : MonoBehaviour
             playerData.document1Int = 1;
         if (playerData.document1Int == 1)
             PlayerData.document1 = true;
+        if (PlayerData.document2 == true)
+            playerData.document2Int = 1;
+        if (playerData.document2Int == 1)
+            PlayerData.document2 = true;
+
+        
 
 
 

@@ -1,15 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using ExamineSystem;
-using UnityEngine.SceneManagement;
-using System.Linq;
 
 public class PasswordSystem : MonoBehaviour
 {
-
-  
-
+    [SerializeField] PlayerStats playerStats;
     [SerializeField] InventoryDisappear inventoryDisappear;
     [SerializeField] int[] password1 = { 3, 4, 5, 3, 2, 1 };
     static int[] _password1 = { 0, 0, 0, 0, 0, 0 };
@@ -129,7 +124,7 @@ public class PasswordSystem : MonoBehaviour
             inventoryDisappear.rectTransform.position = position;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            inventoryDisappear.blur.enabled = false;
+            //inventoryDisappear.blur.enabled = false;s
             inventoryDisappear.bgi.SetActive(false);
             inventoryDisappear.crosshair.enabled = true;
             inventoryDisappear.player.enabled = true;
@@ -148,7 +143,8 @@ public class PasswordSystem : MonoBehaviour
             IEnumerator sauKhiNgatXiu()
             {
                 yield return new WaitForSeconds(10f); //tam thoi la vay, sau khi lam hoan chinh se thay doi sau
-                SceneManager.LoadScene("level3");
+                StartCoroutine(playerStats.LoadAsynchronously("level3"));
+                PlayerStats.isRight = true;
                 PlayerData.fourthSaved = true;
             }
         }

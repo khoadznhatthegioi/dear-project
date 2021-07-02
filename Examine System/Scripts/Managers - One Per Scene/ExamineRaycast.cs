@@ -7,12 +7,15 @@ namespace ExamineSystem
 {
     public class ExamineRaycast : MonoBehaviour
     {
+        public LightLayerChange lightLayerChange;
+        public static bool isExamining;
+
         [Header("Raycast Features")]
         [SerializeField] private float rayLength = 5;
         [SerializeField] private LayerMask layerMaskInteract;
         [SerializeField] private string layerToExclude = null;
         //public GameObject uiHandLookAt;
-        private ExamineItemController raycastedObj;
+        [HideInInspector] public ExamineItemController raycastedObj;
         public ExamineItemController crayon;
         public GameObject diary0UI;
 
@@ -25,9 +28,9 @@ namespace ExamineSystem
 
 
         [Header("Crosshair")]
-        [SerializeField] private Image uiCrosshair = null;     
+        [SerializeField] private Image uiCrosshair = null;
         [HideInInspector] public bool interacting = false;
-        
+
         private bool isCrosshairActive;
 
         private const string pickupTag = "Pickup";
@@ -67,6 +70,8 @@ namespace ExamineSystem
                     {
                         raycastedObj = hit.collider.gameObject.GetComponent<ExamineItemController>();
                         raycastedObj.MainHighlight(true);
+
+                        //var initialMeshRenderer = raycastedObj.GetComponent<MeshRenderer>();
                         CrosshairChange(true);
                     }
 
@@ -74,7 +79,10 @@ namespace ExamineSystem
                     interacting = true;
 
                     if (Input.GetKeyDown(ExamineInputManager.instance.interactKey))
-                    { 
+                    {
+                        isExamining = true;
+                        lightLayerChange.ChangeLayerExamine(raycastedObj.GetComponent<MeshRenderer>());
+                        raycastedObj.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                         raycastedObj.ExamineObject();
                         if (raycastedObj.isBatLua == true)
                         {
@@ -125,16 +133,46 @@ namespace ExamineSystem
                     if (Input.GetKeyDown(ExamineInputManager.instance.interactKey))
                     {
                         raycastedObj.ExamineObject();
-                        if(raycastedObj.name == "giayTest")
+                        isExamining = true;
+                        lightLayerChange.ChangeLayerExamine(raycastedObj.GetComponent<MeshRenderer>());
+                        raycastedObj.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                        if (raycastedObj.name == "giayTest")
                         {
-                            if(testGiayButton)
-                            testGiayButton.SetActive(true);
+                            if (testGiayButton)
+                                testGiayButton.SetActive(true);
                             PlayerData.document1 = true;
                         }
                     }
                 }
+                if (hit.collider.CompareTag("PhieuDiem"))
+                {
+                    if (!interacting)
+                    {
+                        raycastedObj = hit.collider.gameObject.GetComponent<ExamineItemController>();
+                        raycastedObj.MainHighlight(true);
+                        CrosshairChange(true);
+                    }
 
-               
+                    isCrosshairActive = true;
+                    interacting = true;
+
+                    if (Input.GetKeyDown(ExamineInputManager.instance.interactKey))
+                    {
+                        isExamining = true;
+                        raycastedObj.ExamineObject();
+                        raycastedObj.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                        lightLayerChange.ChangeLayerExamine(raycastedObj.GetComponent<MeshRenderer>());
+                        giongDocLaThu.SetActive(true);
+                        StartCoroutine(Waiter());
+                        IEnumerator Waiter()
+                        {
+                            yield return new WaitForSeconds(35f);
+                            cua.tag = "CuaLoadNha";
+                        }
+                    }
+                }
+
+
             }
 
             else
@@ -161,6 +199,11 @@ namespace ExamineSystem
                 uiCrosshair.color = Color.white;
                 isCrosshairActive = false;
             }
+        }
+
+        public void CloseButtonExamine()
+        {
+            raycastedObj.StopInteractingObject();
         }
     }
 }

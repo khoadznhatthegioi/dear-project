@@ -17,7 +17,7 @@ namespace ExamineSystem
         public DisplayInventory displayInventory;
         private BasicDoorController raycasted_obj;
         [Header("Key Codes")]
-        [SerializeField] private KeyCode openDoorKey = KeyCode.Mouse0;
+        //[SerializeField] private KeyCode openDoorKey = KeyCode.Mouse0;
 
         [Header("Crosshair")]
         [SerializeField] private Image uiCrosshair = null;

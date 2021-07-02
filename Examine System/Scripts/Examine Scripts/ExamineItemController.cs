@@ -172,6 +172,17 @@ namespace ExamineSystem
             ExamineDisableManager.instance.DisablePlayer(true);
 
             gameObject.layer = LayerMask.NameToLayer(examineLayer);
+            if (isFlashlight)
+            {
+                for(int i = 0; i < 9; i++)
+                {
+                    var childObject = transform.GetChild(i).gameObject;
+                    childObject.layer = LayerMask.NameToLayer(examineLayer);
+                }
+                
+                
+            }
+            
             thisMat.DisableKeyword(emissive);
             canRotate = true;
 

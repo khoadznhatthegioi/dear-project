@@ -4,23 +4,34 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.Characters.FirstPerson;
+using ExamineSystem;
 
 public class BasicDoorRaycast : MonoBehaviour
 {
     [Header("Raycast Parameters")]
+    //[SerializeField] GiayTestRaycast giayTestRaycast;
     [SerializeField] private int rayLength = 5;
     [SerializeField] private LayerMask layerMaskInteract;
     [SerializeField] private string exludeLayerName = null;
     [SerializeField] GameObject nha;
     [SerializeField] FirstPersonController player;
     [SerializeField] GameObject ban;
+    //[SerializeField] GameObject chan;
+    [SerializeField] GameObject panel;
     [SerializeField] GameObject cua;
     [SerializeField] TriggerCua triggerCua;
+    [SerializeField] GameObject playerObject;
+    [SerializeField] GameObject playerObject1;
+    [SerializeField] Camera mainCamera;
+    [SerializeField] Camera examineCamera;
     public bool isLoaded2;
     public bool isLoaded;
     public GameObject nhungThuBenKia;
     public static bool sceneLoaded1;
     public static bool sceneLoaded2;
+    bool contactedDoor;
+
+    [SerializeField] PlayerStats playerStats;
     //public GameObject uiHandLookAt;
 
     private BasicDoorController raycasted_obj;
@@ -45,8 +56,8 @@ public class BasicDoorRaycast : MonoBehaviour
 
         if (Physics.Raycast(transform.position, fwd, out hit, rayLength, mask))
         {
-             if (hit.collider.CompareTag(interactableTag))
-             {
+            if (hit.collider.CompareTag(interactableTag))
+            {
                 if (!doOnce)
                 {
                     raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
@@ -58,9 +69,9 @@ public class BasicDoorRaycast : MonoBehaviour
 
                 if (Input.GetKeyDown(openDoorKey))
                 {
-                   raycasted_obj.PlayAnimation();
+                    raycasted_obj.PlayAnimation();
                 }
-             }
+            }
 
             if (hit.collider.CompareTag(cuaLoadZoo))
             {
@@ -77,6 +88,7 @@ public class BasicDoorRaycast : MonoBehaviour
                 {
                     if (!isLoaded)
                     {
+                        raycasted_obj.tag = "Untagged";
                         raycasted_obj.PlayAnimation();
                         LoadZooScene();
                         //player.enabled = false;
@@ -92,7 +104,7 @@ public class BasicDoorRaycast : MonoBehaviour
                             PlayerData.sixthSaved = true;
                         }
                     }
-                    
+
                 }
             }
 
@@ -104,6 +116,7 @@ public class BasicDoorRaycast : MonoBehaviour
                     {
                         raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
                         ban.SetActive(true);
+                        //chan.SetActive(true);
                         CrosshairChange(true);
                     }
 
@@ -120,7 +133,7 @@ public class BasicDoorRaycast : MonoBehaviour
 
                     }
                 }
-                
+
             }
 
             if (hit.collider.CompareTag("CuaLoadNha"))
@@ -129,7 +142,7 @@ public class BasicDoorRaycast : MonoBehaviour
                 {
                     if (!doOnce)
                     {
-                        raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>(); 
+                        raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
                         CrosshairChange(true);
                     }
 
@@ -140,24 +153,81 @@ public class BasicDoorRaycast : MonoBehaviour
                     {
                         if (!isLoaded2)
                         {
-                            Debug.Log("CUALOADNHA");
-                            raycasted_obj.PlayAnimation();
-                            LoadNhaScene();
-                        isLoaded2 = true;
+                            //Debug.Log("CUALOADNHA");
+                            raycasted_obj.tag = "Untagged";
+                            player.enabled = false;
+                            panel.SetActive(true);
 
                             StartCoroutine(Waiter1());
 
+
+                            //chan.SetActive(false);
+                            isLoaded2 = true;
+
+                            
+
                             IEnumerator Waiter1()
                             {
+                                yield return new WaitForSeconds(0.5f);
+                                //playerObject.transform.position = new Vector3(0.7f, 0.88f, 6f);
+                                //playerObject.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+                                //playerObject.SetActive(false);
+                                playerObject1.SetActive(true);
+                                mainCamera.enabled = false;
+                                examineCamera.enabled = false;
+                                //mainCamera.transform.eulerAngles = new Vector3(7f, 0f, 0f);
+                                yield return new WaitForSeconds(0.5f);
+                                raycasted_obj.PlayAnimation();
+                                //player.enabled = true;
+                                LoadNhaScene();
                                 yield return new WaitForSeconds(1f);
                                 nhungThuBenKia.SetActive(false);
                                 sceneLoaded2 = true;
                                 PlayerData.seventhSaved = true;
+
+                                playerObject.SetActive(false);
                             }
                         }
 
                     }
                 }
+            }
+
+            if (hit.collider.CompareTag("DoorTest"))
+            {
+                if (!doOnce)
+                {
+                    raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
+                    CrosshairChange(true);
+                }
+
+                isCrosshairActive = true;
+                doOnce = true;
+
+                if (Input.GetKeyDown(openDoorKey))
+                {
+
+                    //Debug.Log("CUALOADNHA");
+                    //raycasted_obj.PlayAnimation();
+                    //LoadNhaScene();
+                    //chan.SetActive(false);
+                    //isLoaded2 = true;
+
+                    //StartCoroutine(Waiter1());
+
+                    //IEnumerator Waiter1()
+                    //{
+                    //    yield return new WaitForSeconds(1f);
+                    //    nhungThuBenKia.SetActive(false);
+                    //    sceneLoaded2 = true;
+                    //    PlayerData.seventhSaved = true;
+                    //}
+                    player.enabled = false;
+                    contactedDoor = true;
+
+
+                }
+
             }
 
         }
@@ -169,6 +239,11 @@ public class BasicDoorRaycast : MonoBehaviour
                 CrosshairChange(false);
                 doOnce = false;
             }
+        }
+        if(contactedDoor == true)
+        {
+            playerObject.transform.position = Vector3.MoveTowards(playerObject.transform.position, new Vector3(-24f, playerObject.transform.position.y, 1f), Time.deltaTime * 5);
+            playerObject.transform.eulerAngles = Vector3.RotateTowards(playerObject.transform.eulerAngles, new Vector3(0f, 90f, 0f), Time.deltaTime * 5, 1f);
         }
     }
 
@@ -186,16 +261,20 @@ public class BasicDoorRaycast : MonoBehaviour
             isCrosshairActive = false;
         }
     }
-    
+
     void LoadZooScene()
     {
-        SceneManager.LoadSceneAsync("Zoo", LoadSceneMode.Additive);
+        //SceneManager.LoadSceneAsync("Zoo", LoadSceneMode.Additive);
+        StartCoroutine(playerStats.LoadAsynchronouslyAdditive("Zoo"));
     }
 
     void LoadNhaScene()
     {
-        SceneManager.LoadSceneAsync("level4", LoadSceneMode.Additive);
-        SceneManager.UnloadSceneAsync("Zoo", UnloadSceneOptions.None);
+        //SceneManager.LoadSceneAsync("level4", LoadSceneMode.Additive);
+        //SceneManager.UnloadSceneAsync("Zoo", UnloadSceneOptions.None);
+
+        StartCoroutine(playerStats.LoadUnloadAsynchronously("level4", "Zoo"));
+        //giayTestRaycast.enabled = false;
         //SceneManager.UnloadSceneAsync("level3", UnloadSceneOptions.None);
     }
 }
