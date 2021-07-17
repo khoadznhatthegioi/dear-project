@@ -47,6 +47,8 @@ public class ZoomInTriggerRaycast : MonoBehaviour
 
     [Header("UI Parameters")]
     [SerializeField] private Image crosshair = null;
+    [SerializeField] private Sprite crosshairUnclicked;
+    [SerializeField] Sprite crosshairClicked;
     private bool isCrosshairActive;
     [SerializeField] private bool doOnce;
     public GameObject invisibleObject; //fortudien
@@ -283,7 +285,7 @@ public class ZoomInTriggerRaycast : MonoBehaviour
         if (on && !doOnce)
         {
             //crosshair.color = Color.grey;
-            crosshair.color = Color.red;
+            crosshair.sprite = crosshairClicked;
             //uiHandLookAt.SetActive(true);
         }
         else
@@ -310,7 +312,7 @@ public class ZoomInTriggerRaycast : MonoBehaviour
                 floatingIconDiary.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
             }
 
-            crosshair.color = Color.white;
+            crosshair.sprite = crosshairUnclicked;
             isCrosshairActive = false;
         }
     }

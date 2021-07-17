@@ -42,6 +42,8 @@ namespace ExamineSystem
 
         [Header("Crosshair")]
         [SerializeField] private Image uiCrosshair = null;
+        [SerializeField] private Sprite uiCrosshairUnclicked = null;
+        [SerializeField] Sprite uiCrosshairClicked = null;
         [HideInInspector] public bool interacting = false;
 
         private bool isCrosshairActive;
@@ -54,6 +56,7 @@ namespace ExamineSystem
         [SerializeField] string namePanelFloatingIcons;
         public GameObject floatingIcon;
         public GameObject panelFloating;
+        
         void Update()
         {
             RaycastHit hit;
@@ -313,7 +316,7 @@ namespace ExamineSystem
         {
             if (on && !interacting)
             {
-                uiCrosshair.color = Color.red;
+                uiCrosshair.sprite = uiCrosshairClicked;
                 //uiHandLookAt.SetActive(true);
             }
             else
@@ -327,7 +330,7 @@ namespace ExamineSystem
 
                 if (floatingIcon)
                     floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
-                uiCrosshair.color = Color.white;
+                uiCrosshair.sprite = uiCrosshairUnclicked;
                 isCrosshairActive = false;
                 //raycastedObj.GetComponent<Outlinable>().enabled = false;
                 //if (raycastedObj.GetComponent<ExamineItemController>().isFlashlight == true)

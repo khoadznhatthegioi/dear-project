@@ -21,6 +21,8 @@ public class PutOnRaycast : MonoBehaviour
 
     [Header("Crosshair")]
     [SerializeField] private Image uiCrosshair = null;
+    [SerializeField] Sprite uiCrosshairUnclicked;
+    [SerializeField] Sprite uiCrosshairClicked;
     [HideInInspector] public bool interacting = false;
     private bool isCrosshairActive;
     private bool doOnce;
@@ -143,7 +145,7 @@ public class PutOnRaycast : MonoBehaviour
     {
         if (on && !interacting)
         {
-            uiCrosshair.color = Color.red;
+            uiCrosshair.sprite = uiCrosshairClicked;
             //uiHandLookAt.SetActive(true);
         }
         else
@@ -157,7 +159,7 @@ public class PutOnRaycast : MonoBehaviour
 
             if (floatingIcon)
                 floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
-            uiCrosshair.color = Color.white;
+            uiCrosshair.sprite = uiCrosshairUnclicked;
             isCrosshairActive = false;
         }
     }

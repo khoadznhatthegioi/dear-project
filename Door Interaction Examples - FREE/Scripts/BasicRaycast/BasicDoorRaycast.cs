@@ -46,6 +46,8 @@ public class BasicDoorRaycast : MonoBehaviour
 
     [Header("UI Parameters")]
     [SerializeField] private Image crosshair = null;
+    [SerializeField] private Sprite crosshairUnclicked;
+    [SerializeField] private Sprite crosshairClicked;
     private bool isCrosshairActive;
     private bool doOnce;
 
@@ -303,7 +305,7 @@ public class BasicDoorRaycast : MonoBehaviour
     {
         if (on && !doOnce)
         {
-            crosshair.color = Color.red;
+            crosshair.sprite = crosshairClicked;
             //uiHandLookAt.SetActive(true);
         }
         else
@@ -317,7 +319,7 @@ public class BasicDoorRaycast : MonoBehaviour
 
             if (floatingIcon)
                 floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
-            crosshair.color = Color.white;
+            crosshair.sprite = crosshairUnclicked;
             isCrosshairActive = false;
         }
     }

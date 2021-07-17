@@ -12,12 +12,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
     {
         [SerializeField] private bool m_IsWalking = true;
         [SerializeField] public float m_WalkSpeed = 0f;
-        [SerializeField] private float m_RunSpeed = 0f;
+        [SerializeField] public  float m_RunSpeed = 0f;
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten = 0f;
         //[SerializeField] private float m_JumpSpeed = 0f;
         [SerializeField] private float m_StickToGroundForce = 0f;
         [SerializeField] private float m_GravityMultiplier = 0f;
-        [SerializeField] public MouseLook m_MouseLook = new MouseLook();
+        [SerializeField] private MouseLook m_MouseLook = new MouseLook();
         [SerializeField] private bool m_UseFovKick = true;
         [SerializeField] private FOVKick m_FovKick = new FOVKick();
         [SerializeField] private bool m_UseHeadBob = true;
@@ -29,6 +29,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_LandSound = null;           // the sound played when character touches back on ground.
 
         private Camera m_Camera;
+       // private bool m_Jump = true;
         private float m_YRotation;
         private Vector2 m_Input = new Vector2();
         private Vector3 m_MoveDir = Vector3.zero;
@@ -38,6 +39,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private Vector3 m_OriginalCameraPosition = Vector3.zero;
         private float m_StepCycle = 0f;
         private float m_NextStep = 0f;
+        private bool m_Jumping = false;
         private AudioSource m_AudioSource = new AudioSource();
 
         // Use this for initialization
@@ -50,6 +52,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_HeadBob.Setup(m_Camera, m_StepInterval);
             m_StepCycle = 0f;
             m_NextStep = m_StepCycle/2f;
+            m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
@@ -60,15 +63,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             RotateView();
             // the jump state needs to read here to make sure it is not missed
-           
+            //if (!m_Jump)
+            //{
+            //    m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+            //}
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
             {
                 StartCoroutine(m_JumpBob.DoBobCycle());
                 PlayLandingSound();
                 m_MoveDir.y = 0f;
+                m_Jumping = false;
             }
-            if (!m_CharacterController.isGrounded && m_PreviouslyGrounded)
+            if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
             {
                 m_MoveDir.y = 0f;
             }
@@ -106,7 +113,13 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MoveDir.y = -m_StickToGroundForce;
 
-               
+                //if (m_Jump)
+                //{
+                //    m_MoveDir.y = m_JumpSpeed;
+                //    PlayJumpSound();
+                //    m_Jump = false;
+                //    m_Jumping = true;
+                //}
             }
             else
             {

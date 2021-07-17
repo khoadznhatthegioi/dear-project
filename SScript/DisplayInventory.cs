@@ -271,6 +271,7 @@ namespace ExamineSystem
                             sth.crosshair.enabled = false;
                             if (tudienCollider)
                                 Destroy(tudienCollider);
+                            zoom.noiDay.GetComponent<EPOOutline.Outlinable>().enabled = false;
                             PlayerData.daSua = true;
                             //sudungrasaoghivaoday(nhuanimation,...)                        
                         }

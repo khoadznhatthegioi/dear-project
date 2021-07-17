@@ -41,6 +41,7 @@ public class WorldPositionButton : MonoBehaviour
                 }
             //}
             var screenPoint = Camera.main.WorldToScreenPoint(targetTransform.position);
+            //screenPoint.y += 1;
             rectTransform.position = screenPoint;
 
             var viewportPoint = Camera.main.WorldToViewportPoint(targetTransform.position);
