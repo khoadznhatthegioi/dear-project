@@ -40,8 +40,8 @@ Cách hoạt động của việc lấy và sử dụng Item trong Inventory:
   + Người chơi sẽ qua ExamineRaycast chọn vật lấy được.
   + Vật lấy được sẽ có script GroundItem. 
   + Khi người chơi nhấp vào vật lấy được, ExamineRaycast sẽ biết được vật có Component GroundItem, từ đó AddItem vào Inventory.
-  + Khi nhấp E, sẽ hiện lên màn hình Inventory. (InventoryDisappear.cs)
+  + Khi nhấp E, sẽ hiện lên màn hình Inventory (InventoryDisappear.cs).
   + Nếu hover con chuột lên một Item, nó sẽ hiện cái Description của mỗi Item, khi nhấp vào, nếu đúng tình huống thì hành động sẽ được thực hiện, nếu không thì sẽ có dòng
-  chữ nói rằng không thực hiện được gì. (DisplayInventory.cs)
+  chữ nói rằng không thực hiện được gì (DisplayInventory.cs).
   
 Sẽ update tiếp cách hoạt động của SavingSystem.
