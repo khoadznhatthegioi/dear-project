@@ -58,11 +58,17 @@ public class PlayerStats : MonoBehaviour {
     public GameObject loadingScreen;
     public Slider slider;
     public GameObject imageLoading;
+    ImageLoading im;
     PlayerData data;
     // [SerializeField] public PlayerData playerData;
  
     private void Update()
     {
+        if (!imageLoading)
+        {
+            im = Resources.FindObjectsOfTypeAll<ImageLoading>()[0];
+            imageLoading = im.gameObject;
+        }
         if ( isRight == true)
         {
             if (panel1)

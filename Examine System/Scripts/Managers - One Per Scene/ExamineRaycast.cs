@@ -132,7 +132,7 @@ namespace ExamineSystem
                             panelFloating.GetComponent<Animator>().Play("FloatingPanel");
                     }
 
-                    if (Input.GetKeyUp(ExamineInputManager.instance.interactKey))
+                    if (Input.GetKeyUp(KeyCode.Mouse0))
                     {
                         if (panelFloating)
                             panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");

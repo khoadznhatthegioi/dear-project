@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using System;
 //using UnityStandardAssets.ImageEffects;
 
 namespace ExamineSystem
@@ -159,33 +160,38 @@ namespace ExamineSystem
             {
                 mouseItem.hoverItem = itemsDisplayed[obj];
             }
-            switch (inventory.database.GetItem[itemsDisplayed[obj].ID].Id)
+            try
             {
-                case 3: // crayon
-                    uiInventory[0].SetActive(true);
-                    break;
-                case 4: // tua vit
-                    uiInventory[1].SetActive(true);
-                    break;
-                case 5: // do khui
-                    uiInventory[2].SetActive(true);
-                    break;
-                case 6: // violin
-                    uiInventory[3].SetActive(true);
-                    break;
-                //case 7: // nhang
-                //    uiInventory[4].SetActive(true);
-                //    break;
-                case 8: // bat lua
-                    uiInventory[4].SetActive(true);
-                    break;
-                case 9: //la bua
-                    uiInventory[5].SetActive(true);
-                    break;
-                case 10: // gate key
-                    uiInventory[6].SetActive(true);
-                    break;
+                switch (inventory.database.GetItem[itemsDisplayed[obj].ID].Id)
+                {
+                    case 3: // crayon
+                        uiInventory[0].SetActive(true);
+                        break;
+                    case 4: // tua vit
+                        uiInventory[1].SetActive(true);
+                        break;
+                    case 5: // do khui
+                        uiInventory[2].SetActive(true);
+                        break;
+                    case 6: // violin
+                        uiInventory[3].SetActive(true);
+                        break;
+                    //case 7: // nhang
+                    //    uiInventory[4].SetActive(true);
+                    //    break;
+                    case 8: // bat lua
+                        uiInventory[4].SetActive(true);
+                        break;
+                    case 9: //la bua
+                        uiInventory[5].SetActive(true);
+                        break;
+                    case 10: // gate key
+                        uiInventory[6].SetActive(true);
+                        break;
+                }
             }
+            catch { }
+
         }
         public void OnExit(GameObject obj)
         {
@@ -260,229 +266,234 @@ namespace ExamineSystem
                         //sudungrasaoghivaoday(nhuanimation,...)                        
                     }
                 }*/
-                switch (inventory.database.GetItem[itemsDisplayed[obj].ID].Id)
+                try
                 {
-                    case 4:
-                        if (PlayerData.moTuDien == true)
-                        {
-                            inventory.RemoveItem(itemsDisplayed[obj].item);
-                            //Debug.Log("hoho");
-                            sth.TurnOffInventory();
-                            sth.crosshair.enabled = false;
-                            if (tudienCollider)
-                                Destroy(tudienCollider);
-                            zoom.noiDay.GetComponent<EPOOutline.Outlinable>().enabled = false;
-                            PlayerData.daSua = true;
-                            //sudungrasaoghivaoday(nhuanimation,...)                        
-                        }
-                        else 
-                        {
-                            HienTextUi();
-                        }
-                        break;
-                    case 5:
-                        if (PlayerData.nhinChaiBia == true)
-                        {
-                            inventory.RemoveItem(itemsDisplayed[obj].item);
-                            //Debug.Log("hoho");
-                            sth.TurnOffInventory();
-                            if (chaiBiaCollider)
-                                Destroy(chaiBiaCollider);
-                            PlayerData.daKhuiChaiBia = true;
-                            chaiBiaCamera.SetActive(false);
-                            player.SetActive(true);
-                            zoom.isInteracting = false;
-                            //nhinChaiBia = false;
-                            cuocNoiChuyen.Play();
-                            volumeNoiChuyen.SetActive(true);
-                            denTvBat.SetActive(true);
-                            //saveSystem.Save();
-                            StartCoroutine(SauCuocNoiChuyen());
-
-
-                            IEnumerator SauCuocNoiChuyen()
+                    switch (inventory.database.GetItem[itemsDisplayed[obj].ID].Id)
+                    {
+                        case 4:
+                            if (PlayerData.moTuDien == true)
                             {
-                                yield return new WaitForSeconds(35f);
-                                //danViolin.SetActive(true);
-                                volumeNoiChuyen.SetActive(false);
-                                documentsList.alreadyPlayed[0] = false;
-                                sceneLoaded = true;
-                                PlayerData.firstSaved = true;
+                                inventory.RemoveItem(itemsDisplayed[obj].item);
+                                //Debug.Log("hoho");
+                                sth.TurnOffInventory();
+                                sth.crosshair.enabled = false;
+                                if (tudienCollider)
+                                    Destroy(tudienCollider);
+                                zoom.noiDay.GetComponent<EPOOutline.Outlinable>().enabled = false;
+                                PlayerData.daSua = true;
+                                //sudungrasaoghivaoday(nhuanimation,...)                        
                             }
-                            //sudungrasaoghivaoday(nhuanimation,...)                        
-                        }
-                        else
-                        {
-                            HienTextUi();
-                        }
-                        break;
-                    case 6:
-                        if (PlayerData.nhinViolinStand == true)
-                        {
-                            inventory.RemoveItem(itemsDisplayed[obj].item);
-                            //Debug.Log("hoho");
-                            sth.TurnOffInventory();
-                            if (violinStandCollider)
-                                Destroy(violinStandCollider);
-                            //dadatviolin= true
-                            // them nhung mon do tren tuong,...
-                            //them mot cai volume chay qua
-                            player.SetActive(true);
-                            PlayerData.nhinViolinStand = false;
-                            //playerStats.SavePlayer();
-                            sceneLoaded1 = true;
-                            PlayerData.secondSaved = true;
-                            //sudungrasaoghivaoday(nhuanimation,...)                        
-                        }
-                        else
-                        {
-                            HienTextUi();
-                        }
-                        break;
-                    case 8:
-                        if (PlayerData.nhinBoNhang == true)
-                        {
-                            inventory.RemoveItem(itemsDisplayed[obj].item);
-                            //Debug.Log("hoho");
-                            sth.TurnOffInventory();
-                            if (boNhangCollider)
-                                Destroy(boNhangCollider);
-                            //dadatviolin= true
-                            // them nhung mon do tren tuong,...
-                            //them mot cai volume chay qua
-                            player.SetActive(true);
-                            PlayerData.nhinBoNhang = false;
-                            boNhang.SetActive(false);
-
-                            StartCoroutine(waiter1());
-
-                            IEnumerator waiter1()
+                            else
                             {
-                                yield return new WaitForSeconds(3f);
-                                //playerTransform1.enabled = false;
-                                //playerTransform.transform.position = new Vector3(-12f, 1f, -1f);
-                                //playerTransform1.enabled = true;
-
-                                laBua.SetActive(true);
-                                sceneLoaded3 = true;
-                                PlayerData.fifthSaved = true;
+                                HienTextUi();
                             }
-                            //laBua.SetActive(true);
-                            //sudungrasaoghivaoday(nhuanimation,...)                  
-                        }
-                        else
-                        {
-                            HienTextUi();
-                        }
-                        break;
-                    case 3:
-                        if (PlayerData.nhinDiary == true)
-                        {
-                            inventory.RemoveItem(itemsDisplayed[obj].item);
-                            //Debug.Log("hoho");
-                            position.x = 6666;
-                            rectTransform.position = position;
-                            Cursor.lockState = CursorLockMode.Locked;
-                            Cursor.visible = false;
-                            //sth.blur.enabled = false;
-                            sth.bgi.SetActive(false);
-                            sth.crosshair.enabled = true;
-                            sth.player.enabled = false;
-                            Time.timeScale = 1f;
-                            sth.blurOut.SetActive(false);
-                            if (sth.zoomInRay != "")
+                            break;
+                        case 5:
+                            if (PlayerData.nhinChaiBia == true)
                             {
-                                (sth.mainCam.GetComponent(sth.zoomInRay) as MonoBehaviour).enabled = true;
+                                inventory.RemoveItem(itemsDisplayed[obj].item);
+                                //Debug.Log("hoho");
+                                sth.TurnOffInventory();
+                                if (chaiBiaCollider)
+                                    Destroy(chaiBiaCollider);
+                                PlayerData.daKhuiChaiBia = true;
+                                chaiBiaCamera.SetActive(false);
+                                player.SetActive(true);
+                                zoom.isInteracting = false;
+                                //nhinChaiBia = false;
+                                cuocNoiChuyen.Play();
+                                volumeNoiChuyen.SetActive(true);
+                                denTvBat.SetActive(true);
+                                //saveSystem.Save();
+                                StartCoroutine(SauCuocNoiChuyen());
+
+
+                                IEnumerator SauCuocNoiChuyen()
+                                {
+                                    yield return new WaitForSeconds(35f);
+                                    //danViolin.SetActive(true);
+                                    volumeNoiChuyen.SetActive(false);
+                                    documentsList.alreadyPlayed[0] = false;
+                                    sceneLoaded = true;
+                                    PlayerData.firstSaved = true;
+                                }
+                                //sudungrasaoghivaoday(nhuanimation,...)                        
                             }
-                            if (sth.violinRaycast != "")
+                            else
                             {
-                                (sth.mainCam.GetComponent(sth.violinRaycast) as MonoBehaviour).enabled = true;
+                                HienTextUi();
                             }
-                            (sth.mainCam.GetComponent(sth.examineRay) as MonoBehaviour).enabled = true;
-                            (sth.mainCam.GetComponent(sth.putOnRay) as MonoBehaviour).enabled = true;
-                            (sth.mainCam.GetComponent(sth.doorRay) as MonoBehaviour).enabled = true;
-
-                            sth.isInventoryAlreadyOn = false;
-                            if (diary)
-                                Destroy(diary);
-                            sceneLoaded2 = true;
-                            videoLoaded = true;
-                            PlayerData.thirdSaved = true;
-                            video.SetActive(true);
-
-                            player.SetActive(true);
-                            StartCoroutine(waiter());
-                            //PlayerData.isVideoPlayed = true;
-
-                            IEnumerator waiter()
+                            break;
+                        case 6:
+                            if (PlayerData.nhinViolinStand == true)
                             {
-                                yield return new WaitForSeconds(58f);
-                                video.SetActive(false);
-                                //ban.SetActive(true);
-                                sth.player.enabled = true;
-                                //nhungcaighe.SetActive(true);
-                                //thaydoiquakhuctieptheo
-                                //denchieuvao
-                                //tv dc di chuyen qua cho khac
-                                if (violinBieuDien)
-                                    violinBieuDien.SetActive(true);
-                                //PlayerData.isVideoPlayed = false;
+                                inventory.RemoveItem(itemsDisplayed[obj].item);
+                                //Debug.Log("hoho");
+                                sth.TurnOffInventory();
+                                if (violinStandCollider)
+                                    Destroy(violinStandCollider);
+                                //dadatviolin= true
+                                // them nhung mon do tren tuong,...
+                                //them mot cai volume chay qua
+                                player.SetActive(true);
+                                PlayerData.nhinViolinStand = false;
+                                //playerStats.SavePlayer();
+                                sceneLoaded1 = true;
+                                PlayerData.secondSaved = true;
+                                //sudungrasaoghivaoday(nhuanimation,...)                        
                             }
+                            else
+                            {
+                                HienTextUi();
+                            }
+                            break;
+                        case 8:
+                            if (PlayerData.nhinBoNhang == true)
+                            {
+                                inventory.RemoveItem(itemsDisplayed[obj].item);
+                                //Debug.Log("hoho");
+                                sth.TurnOffInventory();
+                                if (boNhangCollider)
+                                    Destroy(boNhangCollider);
+                                //dadatviolin= true
+                                // them nhung mon do tren tuong,...
+                                //them mot cai volume chay qua
+                                player.SetActive(true);
+                                PlayerData.nhinBoNhang = false;
+                                boNhang.SetActive(false);
 
-                        }
-                        else
-                        {
-                            HienTextUi();
-                        }
-                        break;
-                    case 9:
-                        if (triggerQuaiVat.isQuaiVatAwake)
-                        {
-                            inventory.RemoveItem(itemsDisplayed[obj].item);
-                            // Debug.Log("hoho");
-                            sth.TurnOffInventory();
-                            //if (boNhangCollider)
-                            //    Destroy(boNhangCollider);
-                            //dadatviolin = true
-                            // them nhung mon do tren tuong,...
-                            //them mot cai volume chay qua
-                            player.SetActive(true);
-                            //nhinBoNhang = false;
-                            //boNhang.SetActive(false);
-                            triggerQuaiVat.isQuaiVatAwake = false;
-                            PlayerData.usedAmulet = true;
-                        }
-                        else
-                        {
-                            HienTextUi();
-                        }
-                        break;
-                    case 10:
-                        if (TriggerMoCua.isDungTruocCua)
-                        {
-                            inventory.RemoveItem(itemsDisplayed[obj].item);
-                            //Debug.Log("hoho");
-                            sth.TurnOffInventory();
-                            //if (boNhangCollider)
-                            //Destroy(boNhangCollider);
-                            //dadatviolin= true
-                            // them nhung mon do tren tuong,...
-                            //them mot cai volume chay qua
-                            player.SetActive(true);
-                            PlayerData.eighthSaved = true;
-                            //nhinBoNhang = false;
-                            //boNhang.SetActive(false);
-                            TriggerMoCua.isDungTruocCua = false;
-                            StartCoroutine(playerStats.LoadAsynchronously("level5"));
+                                StartCoroutine(waiter1());
 
-                        }
-                        else
-                        {
-                            HienTextUi();
-                        }
-                        break;
+                                IEnumerator waiter1()
+                                {
+                                    yield return new WaitForSeconds(3f);
+                                    //playerTransform1.enabled = false;
+                                    //playerTransform.transform.position = new Vector3(-12f, 1f, -1f);
+                                    //playerTransform1.enabled = true;
 
-                }  
+                                    laBua.SetActive(true);
+                                    sceneLoaded3 = true;
+                                    PlayerData.fifthSaved = true;
+                                }
+                                //laBua.SetActive(true);
+                                //sudungrasaoghivaoday(nhuanimation,...)                  
+                            }
+                            else
+                            {
+                                HienTextUi();
+                            }
+                            break;
+                        case 3:
+                            if (PlayerData.nhinDiary == true)
+                            {
+                                inventory.RemoveItem(itemsDisplayed[obj].item);
+                                //Debug.Log("hoho");
+                                position.x = 6666;
+                                rectTransform.position = position;
+                                Cursor.lockState = CursorLockMode.Locked;
+                                Cursor.visible = false;
+                                //sth.blur.enabled = false;
+                                sth.bgi.SetActive(false);
+                                sth.crosshair.enabled = true;
+                                sth.player.enabled = false;
+                                Time.timeScale = 1f;
+                                sth.blurOut.SetActive(false);
+                                if (sth.zoomInRay != "")
+                                {
+                                    (sth.mainCam.GetComponent(sth.zoomInRay) as MonoBehaviour).enabled = true;
+                                }
+                                if (sth.violinRaycast != "")
+                                {
+                                    (sth.mainCam.GetComponent(sth.violinRaycast) as MonoBehaviour).enabled = true;
+                                }
+                                (sth.mainCam.GetComponent(sth.examineRay) as MonoBehaviour).enabled = true;
+                                (sth.mainCam.GetComponent(sth.putOnRay) as MonoBehaviour).enabled = true;
+                                (sth.mainCam.GetComponent(sth.doorRay) as MonoBehaviour).enabled = true;
+
+                                sth.isInventoryAlreadyOn = false;
+                                if (diary)
+                                    Destroy(diary);
+                                sceneLoaded2 = true;
+                                videoLoaded = true;
+                                PlayerData.thirdSaved = true;
+                                video.SetActive(true);
+
+                                player.SetActive(true);
+                                StartCoroutine(waiter());
+                                //PlayerData.isVideoPlayed = true;
+
+                                IEnumerator waiter()
+                                {
+                                    yield return new WaitForSeconds(58f);
+                                    video.SetActive(false);
+                                    //ban.SetActive(true);
+                                    sth.player.enabled = true;
+                                    //nhungcaighe.SetActive(true);
+                                    //thaydoiquakhuctieptheo
+                                    //denchieuvao
+                                    //tv dc di chuyen qua cho khac
+                                    if (violinBieuDien)
+                                        violinBieuDien.SetActive(true);
+                                    //PlayerData.isVideoPlayed = false;
+                                }
+
+                            }
+                            else
+                            {
+                                HienTextUi();
+                            }
+                            break;
+                        case 9:
+                            if (triggerQuaiVat.isQuaiVatAwake)
+                            {
+                                inventory.RemoveItem(itemsDisplayed[obj].item);
+                                // Debug.Log("hoho");
+                                sth.TurnOffInventory();
+                                //if (boNhangCollider)
+                                //    Destroy(boNhangCollider);
+                                //dadatviolin = true
+                                // them nhung mon do tren tuong,...
+                                //them mot cai volume chay qua
+                                player.SetActive(true);
+                                //nhinBoNhang = false;
+                                //boNhang.SetActive(false);
+                                triggerQuaiVat.isQuaiVatAwake = false;
+                                PlayerData.usedAmulet = true;
+                            }
+                            else
+                            {
+                                HienTextUi();
+                            }
+                            break;
+                        case 10:
+                            if (TriggerMoCua.isDungTruocCua)
+                            {
+                                inventory.RemoveItem(itemsDisplayed[obj].item);
+                                //Debug.Log("hoho");
+                                sth.TurnOffInventory();
+                                //if (boNhangCollider)
+                                //Destroy(boNhangCollider);
+                                //dadatviolin= true
+                                // them nhung mon do tren tuong,...
+                                //them mot cai volume chay qua
+                                player.SetActive(true);
+                                PlayerData.eighthSaved = true;
+                                //nhinBoNhang = false;
+                                //boNhang.SetActive(false);
+                                TriggerMoCua.isDungTruocCua = false;
+                                StartCoroutine(playerStats.LoadAsynchronously("level5"));
+
+                            }
+                            else
+                            {
+                                HienTextUi();
+                            }
+                            break;
+
+                    }
+                }
+                catch { }
+                
 
 
             }

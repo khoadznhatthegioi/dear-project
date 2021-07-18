@@ -128,7 +128,7 @@ public class SaveSystem : MonoBehaviour
         //}
     }
 
-    private void Ha()
+    public void Ha()
     {
         if (SceneManager.GetActiveScene().name == "mainmenu")
         {
