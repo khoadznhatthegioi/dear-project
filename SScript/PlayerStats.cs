@@ -47,6 +47,7 @@ public class PlayerStats : MonoBehaviour {
     public static bool check20;
     public static bool check21;
     public static bool check22;
+    public static bool qv;
     public GameObject panel1;
 
 
@@ -66,10 +67,14 @@ public class PlayerStats : MonoBehaviour {
     {
         if (!imageLoading)
         {
-            im = Resources.FindObjectsOfTypeAll<ImageLoading>()[0];
-            imageLoading = im.gameObject;
+            if (Resources.FindObjectsOfTypeAll<ImageLoading>().Length>0)
+            {
+                im = Resources.FindObjectsOfTypeAll<ImageLoading>()[0];
+                imageLoading = im.gameObject;
+            }
+                
         }
-        if ( isRight == true)
+        if ( isRight == true || qv == true)
         {
             if (panel1)
             {
@@ -100,8 +105,8 @@ public class PlayerStats : MonoBehaviour {
                     check11 = true;
                 }
                 
-                StartCoroutine(WaitSceneLoad());
-                IEnumerator WaitSceneLoad()
+                StartCoroutine(wait());
+                IEnumerator wait()
                 {
                     yield return new WaitForSeconds(2f);
                     if (firstSavedObject)
@@ -114,8 +119,8 @@ public class PlayerStats : MonoBehaviour {
                     {
                         //fpsc.enabled = false;
                         fpsController.transform.position = new Vector3(1, 0.88f, -2);
-                        StartCoroutine(Cho1());
-                        IEnumerator Cho1()
+                        StartCoroutine(w());
+                        IEnumerator w()
                         {
                             yield return new WaitForSeconds(0.1f);
                             //fpsc.enabled = true; 
@@ -146,8 +151,8 @@ public class PlayerStats : MonoBehaviour {
                     StartCoroutine(LoadAsynchronously("level1"));
                     check12 = true;
                 }
-                StartCoroutine(WaitSceneLoad1());
-                IEnumerator WaitSceneLoad1()
+                StartCoroutine(wait());
+                IEnumerator wait()
                 {
                     yield return new WaitForSeconds(2f);
                     //cac poster xuat hien,........
@@ -161,8 +166,8 @@ public class PlayerStats : MonoBehaviour {
                     {
                         //fpsc.enabled = false;
                         fpsController.transform.position = new Vector3(1, 0.88f, 11);
-                        StartCoroutine(Cho2());
-                        IEnumerator Cho2()
+                        StartCoroutine(w());
+                        IEnumerator w()
                         {
                             yield return new WaitForSeconds(0.1f);
                             //fpsc.enabled = true; 
@@ -189,8 +194,8 @@ public class PlayerStats : MonoBehaviour {
                     StartCoroutine(LoadAsynchronously("level1"));
                     check13 = true;
                 }
-                StartCoroutine(WaitSceneLoad2());
-                IEnumerator WaitSceneLoad2()
+                StartCoroutine(wait());
+                IEnumerator wait()
                 {
                     yield return new WaitForSeconds(2f);
 
@@ -204,9 +209,9 @@ public class PlayerStats : MonoBehaviour {
                             Destroy(diary);
                         if (violinBieuDien)
                             violinBieuDien.SetActive(true);
-                        StartCoroutine(Cho2());
+                        StartCoroutine(w());
 
-                        IEnumerator Cho2()
+                        IEnumerator w()
                         {
                             yield return new WaitForSeconds(55f);
                             //fpsc.enabled = true;
@@ -260,8 +265,8 @@ public class PlayerStats : MonoBehaviour {
                     StartCoroutine(LoadAsynchronously("level3"));
                     check14 = true;
                 }
-                StartCoroutine(Waiter());
-                IEnumerator Waiter()
+                StartCoroutine(w());
+                IEnumerator w()
                 {
                     yield return new WaitForSeconds(2f);
                     if (PlayerData.sixthSaved == false && PlayerData.seventhSaved == false && DisplayInventory.sceneLoaded3 == false)
@@ -269,8 +274,8 @@ public class PlayerStats : MonoBehaviour {
 
                        // fpsc.enabled = false;
                         fpsController.transform.position = new Vector3(-4, 0.88f, -1);
-                        StartCoroutine(Cho3());
-                        IEnumerator Cho3()
+                        StartCoroutine(w1());
+                        IEnumerator w1()
                         {
                             yield return new WaitForSeconds(0.1f);
                             //fpsc.enabled = true;
@@ -303,8 +308,8 @@ public class PlayerStats : MonoBehaviour {
                     SceneManager.LoadSceneAsync("Zoo", LoadSceneMode.Additive);
                     check15 = true;
                 }
-                StartCoroutine(WaiterSceneLoad3());
-                IEnumerator WaiterSceneLoad3()
+                StartCoroutine(w());
+                IEnumerator w()
                 {
                     yield return new WaitForSeconds(2f);
                     if (nha)
@@ -315,8 +320,8 @@ public class PlayerStats : MonoBehaviour {
                     {
                         //fpsc.enabled = false;
                         fpsController.transform.position = new Vector3(1, 0.88f, 6);
-                        StartCoroutine(Cho4());
-                        IEnumerator Cho4()
+                        StartCoroutine(w1());
+                        IEnumerator w1()
                         {
                             yield return new WaitForSeconds(0.1f);
                             //fpsc.enabled = true;
@@ -370,8 +375,8 @@ public class PlayerStats : MonoBehaviour {
                     }
                     if(check17 == false)
                     {
-                        StartCoroutine(Cho6());
-                        IEnumerator Cho6()
+                        StartCoroutine(w1());
+                        IEnumerator w1()
                         {
                             yield return new WaitForSeconds(0.3f);
 
@@ -389,8 +394,8 @@ public class PlayerStats : MonoBehaviour {
                         //fpsc.enabled = false;
                         fpsController.transform.position = new Vector3(1, 0.88f, 6);
                         
-                        StartCoroutine(Waitere());
-                        IEnumerator Waitere()
+                        StartCoroutine(w());
+                        IEnumerator w()
                         {
                             yield return new WaitForSeconds(0.1f);
                             //fpsc.enabled = true;

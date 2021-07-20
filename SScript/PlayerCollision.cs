@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerCollision : MonoBehaviour
     public GameObject quaiVat;
     public TriggerQuaiVat triggerQuaiVat;
     public GameObject ban;
+    [SerializeField] PlayerStats playerStats;
     //public CheckQuaiVat checkQuaiVat;
     //public GameObject backGround;
     public bool aBool;
@@ -26,6 +28,8 @@ public class PlayerCollision : MonoBehaviour
             {
                 yield return new WaitForSeconds(5f);
                 //gameOverMenu.SetActive(true);
+                StartCoroutine(playerStats.LoadAsynchronously("level4"));
+                PlayerStats.qv = true;
                 //backGround.SetActive(true);
                 aBool = true;
             }
@@ -50,17 +54,17 @@ public class PlayerCollision : MonoBehaviour
     {
         if (aBool == true)
         {
-            ban.SetActive(true);
-            player.transform.position = new Vector3(0, 1, 7);
-            triggerQuaiVat.isQuaiVatAwake = false;
-            quaiVat.SetActive(false);
-            StartCoroutine(Waiter1());
-            IEnumerator Waiter1()
-            {
-                yield return new WaitForSeconds(5f);
-                movement.enabled = true;
-                aBool = false;
-            }
+            //ban.SetActive(true);
+            //player.transform.position = new Vector3(0, 1, 7);
+            //triggerQuaiVat.isQuaiVatAwake = false;
+            //quaiVat.SetActive(false);
+            //StartCoroutine(Waiter1());
+            //IEnumerator Waiter1()
+            //{
+            //    yield return new WaitForSeconds(5f);
+            //    movement.enabled = true;
+            //    aBool = false;
+            //}
            
         }
             

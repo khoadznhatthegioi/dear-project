@@ -19,6 +19,7 @@ public class CheckBool : MonoBehaviour
 
         isBuffering = false;
         PlayerStats.isRight = false;
+        PlayerStats.qv = false;
         //imageLoading.SetActive(false);
         playerStats.panel1.SetActive(false);
         
