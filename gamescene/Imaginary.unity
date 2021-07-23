@@ -420,6 +420,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: fancy door
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d0a0e4e2bea6f242bd5964be23ec17a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2586662654858108940, guid: 7d0a0e4e2bea6f242bd5964be23ec17a,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1231,6 +1236,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: basicdoor_fame
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 81edbbea617b18c40ae3ddb46e2e6232,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81edbbea617b18c40ae3ddb46e2e6232, type: 3}
 --- !u!1001 &1249980253
@@ -1908,7 +1918,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 136.561, y: -17.643982, z: -345.46802}
 --- !u!114 &2067572357
 MonoBehaviour:

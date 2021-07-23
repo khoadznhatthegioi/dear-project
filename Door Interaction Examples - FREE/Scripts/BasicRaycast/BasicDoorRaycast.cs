@@ -35,6 +35,8 @@ public class BasicDoorRaycast : MonoBehaviour
     public GameObject floatingIcon;
     public GameObject panelFloating;
     bool contactedDoor;
+    public bool openedDoor;
+    float y;
 
     [SerializeField] PlayerStats playerStats;
     //public GameObject uiHandLookAt;
@@ -46,14 +48,38 @@ public class BasicDoorRaycast : MonoBehaviour
 
     [Header("UI Parameters")]
     [SerializeField] private Image crosshair = null;
-    [SerializeField] private Sprite crosshairUnclicked;
+    [SerializeField] public Sprite crosshairUnclicked;
     [SerializeField] private Sprite crosshairClicked;
     private bool isCrosshairActive;
     private bool doOnce;
 
+    //MOVE MVOE MOVEMSADHKLSADKLSJAKLDJSAKLJDLKSAJDKLASJDKLSJDKSJDLKJD
+    [Header("Smooth Transition")]
+    public bool doOnceTwo;
+    float startRotationPlayer;
+    [SerializeField] float endRotationPlayer;
+    float startRotationCamera;
+    [SerializeField] float endRotationCamera;
+
+    [SerializeField] float duration;
+    float startTime;
+    [HideInInspector] public bool isRotatingLeftwise;
+    [HideInInspector] public bool isRotatingRightwise;
+    [HideInInspector] public bool isRotatingUpward;
+    [HideInInspector] public bool isRotatingDownward;
+    float startX;
+    float startY;
+    float startZ;
+    public float[] targetPosition;
+    //KASKLDJLASJDKLSAJDLKASJDKLJASKLDJSKLDJSKALJDKLSJDKLSJDKLSJDKALSJDK
+
     private const string interactableTag = "InteractiveObject";
     const string cuaLoadZoo = "CuaLoadZoo";
 
+    //private void Start()
+    //{
+        
+    //}
     private void Update()
     {
         RaycastHit hit;
@@ -78,7 +104,7 @@ public class BasicDoorRaycast : MonoBehaviour
                         panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                     }
                     if (floatingIcon)
-                        floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(75, 75);
+                        floatingIcon.GetComponent<Animator>().Play("ExpandFloating");
                     CrosshairChange(true);
                 }
 
@@ -118,7 +144,7 @@ public class BasicDoorRaycast : MonoBehaviour
                         panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                     }
                     if (floatingIcon)
-                        floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(75, 75);
+                        floatingIcon.GetComponent<Animator>().Play("ExpandFloating");
                     CrosshairChange(true);
                 }
 
@@ -284,6 +310,104 @@ public class BasicDoorRaycast : MonoBehaviour
 
             }
 
+            if (hit.collider.CompareTag("DoorHinge"))
+            {
+                if (!doOnce)
+                {
+                    raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
+                    //nameFloatingIcons = "FloatingIcon" + raycasted_obj.name;
+                    //namePanelFloatingIcons = "PanelFloating" + raycasted_obj.name;
+                    //floatingIcon = GameObject.Find(nameFloatingIcons);
+                    //panelFloating = GameObject.Find(namePanelFloatingIcons);
+                    if (panelFloating)
+                    {
+                        panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                        panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
+                    }
+                    if (floatingIcon)
+                        floatingIcon.GetComponent<Animator>().Play("ExpandFloating");
+                    CrosshairChange(true);
+                }
+
+                isCrosshairActive = true;
+                doOnce = true;
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    if (panelFloating)
+                        panelFloating.GetComponent<Animator>().Play("FloatingPanel");
+                }
+
+                if (Input.GetKeyUp(ExamineInputManager.instance.interactKey))
+                {
+                    if (panelFloating)
+                        panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
+                    //raycasted_obj.PlayAnimation();
+                    raycasted_obj.GetComponent<Rigidbody>().isKinematic = false;
+                    openedDoor = true;
+                    
+                    if (panelFloating)
+                        panelFloating.SetActive(false);
+                    if (floatingIcon)
+                        floatingIcon.SetActive(false);
+                }
+            }
+
+            if (hit.collider.CompareTag("DoorTest1"))
+            {
+                if (!doOnce)
+                {
+                    raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
+                    if (panelFloating)
+                    {
+                        panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                        panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
+                    }
+                    if (floatingIcon)
+                        floatingIcon.GetComponent<Animator>().Play("ExpandFloating");
+                    CrosshairChange(true);
+                }
+
+                isCrosshairActive = true;
+                doOnce = true;
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    if (panelFloating)
+                        panelFloating.GetComponent<Animator>().Play("FloatingPanel");
+                }
+
+                if (Input.GetKeyUp(ExamineInputManager.instance.interactKey))
+                {
+                    if (panelFloating)
+                        panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
+                    //raycasted_obj.PlayAnimation();
+                    //raycasted_obj.GetComponent<Rigidbody>().isKinematic = false;
+                    //openedDoor = true;
+
+                    if (panelFloating)
+                        panelFloating.SetActive(false);
+                    if (floatingIcon)
+                        floatingIcon.SetActive(false);
+                    player.enabled = false;
+                    startRotationPlayer = player.gameObject.transform.eulerAngles.y;
+                    startRotationCamera = gameObject.transform.eulerAngles.x;
+                    startTime = Time.time;
+                    startX = player.transform.position.x;
+                    startY = player.transform.position.y;
+                    startZ = player.transform.position.z;
+                    doOnceTwo = true;
+                    
+                    
+                    
+
+
+
+                    //player.gameObject.transform.position = new Vector3(Mathf.SmoothStep(10f, 20f, 5), 0, 0);
+
+                }
+            }
+
         }
 
         else
@@ -294,10 +418,37 @@ public class BasicDoorRaycast : MonoBehaviour
                 doOnce = false;
             }
         }
-        if(contactedDoor == true)
+        if (contactedDoor == true)
         {
             playerObject.transform.position = Vector3.MoveTowards(playerObject.transform.position, new Vector3(-24f, playerObject.transform.position.y, 1f), Time.deltaTime * 5);
             playerObject.transform.eulerAngles = Vector3.RotateTowards(playerObject.transform.eulerAngles, new Vector3(0f, 90f, 0f), Time.deltaTime * 5, 1f);
+        }
+
+        if(doOnceTwo == true)
+        {
+            // float t = (Time.time - startTime) / duration;
+            //player.gameObject.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, Mathf.SmoothStep(startPoint, endPoint, t), player.transform.eulerAngles.z);
+
+            //p = playerrotation
+            //x 
+            //t = target
+            // p + x = t
+            //var t = new Vector3(0, endPoint, 
+            //var x = endPoint-player.transform.eulerAngles.y;
+            float t = (Time.time - startTime) / duration;
+            playerStats.RotatePlayer(startRotationPlayer, endRotationPlayer, duration, player.gameObject,startRotationCamera, endRotationCamera, gameObject, startTime);
+            player.transform.position = new Vector3(Mathf.SmoothStep(startX, targetPosition[0], t), Mathf.SmoothStep(startY, targetPosition[1], t), Mathf.SmoothStep(startZ, targetPosition[2], t));
+            //playerStats.RotateCamera(startRotationCamera, endRotationCamera, duration, gameObject, startTime);
+
+            StartCoroutine(wait());
+            IEnumerator wait()
+            {
+                yield return new WaitForSeconds(duration);
+                player.m_MouseLook.Init(player.transform, transform);
+                player.enabled = true;
+                doOnceTwo = false;
+            }
+            
         }
     }
 
@@ -311,6 +462,7 @@ public class BasicDoorRaycast : MonoBehaviour
         else
         {
             //uiHandLookAt.SetActive(false);
+            //Debug.Log("ÁDSAD");
             if (panelFloating)
             {
                 panelFloating.GetComponent<Animator>().Play("FloatingPanelExit");
@@ -318,7 +470,7 @@ public class BasicDoorRaycast : MonoBehaviour
             }
 
             if (floatingIcon)
-                floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
+                floatingIcon.GetComponent<Animator>().Play("ExpandFloatingReverse");
             crosshair.sprite = crosshairUnclicked;
             isCrosshairActive = false;
         }
@@ -339,4 +491,5 @@ public class BasicDoorRaycast : MonoBehaviour
         //giayTestRaycast.enabled = false;
         //SceneManager.UnloadSceneAsync("level3", UnloadSceneOptions.None);
     }
+    
 }

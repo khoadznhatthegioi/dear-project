@@ -77,7 +77,7 @@ public class PutOnRaycast : MonoBehaviour
                         panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                     }
                     if (floatingIcon)
-                        floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(75, 75);
+                        floatingIcon.GetComponent<Animator>().Play("ExpandFloating");
                     CrosshairChange(true);
                 }
 
@@ -158,7 +158,7 @@ public class PutOnRaycast : MonoBehaviour
             }
 
             if (floatingIcon)
-                floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 50);
+                floatingIcon.GetComponent<Animator>().Play("ExpandFloatingReverse");
             uiCrosshair.sprite = uiCrosshairUnclicked;
             isCrosshairActive = false;
         }

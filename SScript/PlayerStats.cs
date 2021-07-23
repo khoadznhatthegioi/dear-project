@@ -532,4 +532,71 @@ public class PlayerStats : MonoBehaviour {
     {
         inventory.Container.Items = new InventorySlot[6];
     }
+    public void RotatePlayer(float startRot, float endRot, float duration, GameObject pl, float startRotCam, float endRotCam,GameObject cam, float startTime)
+    {
+        
+        //var i = 0.0f;
+        //var rate = 1.0f / rotateTime;
+        //while (i < 1.0f)
+        //{
+        //float t = (Time.time - startTime) / rotateTime;
+        //rotateObject.transform.eulerAngles = Vector3.RotateTowards(startRot, endRot, Mathf.SmoothStep(0.0f, 1.0f,t)* Time.deltaTime, 1f);
+        float t = (Time.time - startTime) / duration;
+        
+        if(pl.transform.eulerAngles.y <= 180 && basicDoorRaycast.isRotatingRightwise == false)
+        {
+            pl.transform.eulerAngles = new Vector3(0, Mathf.SmoothStep(startRot, endRot, t), 0);
+            basicDoorRaycast.isRotatingLeftwise = true;
+            StartCoroutine(waitLeft());
+           
+        }
+            
+        else if(pl.transform.eulerAngles.y > 180 && basicDoorRaycast.isRotatingLeftwise == false)
+        {
+            pl.transform.eulerAngles = new Vector3(0, Mathf.SmoothStep(startRot-360, endRot, t), 0);
+            basicDoorRaycast.isRotatingRightwise = true;
+            StartCoroutine(waitRight());
+        }
+        //}
+        IEnumerator waitLeft()
+        {
+            yield return new WaitForSeconds(duration);
+            basicDoorRaycast.isRotatingLeftwise = false;
+        }
+        IEnumerator waitRight()
+        {
+            yield return new WaitForSeconds(duration);
+            basicDoorRaycast.isRotatingRightwise = false;
+        }
+
+        //float t = (Time.time - startTime) / duration;
+
+        if (cam.transform.eulerAngles.x <= 180 && basicDoorRaycast.isRotatingUpward == false)
+        {
+            cam.transform.eulerAngles = new Vector3(Mathf.SmoothStep(startRotCam, endRotCam, t), pl.transform.eulerAngles.y, 0);
+            basicDoorRaycast.isRotatingDownward = true;
+            StartCoroutine(waitUp());
+
+        }
+
+        else if (cam.transform.eulerAngles.x > 180 && basicDoorRaycast.isRotatingDownward == false)
+        {
+            cam.transform.eulerAngles = new Vector3(Mathf.SmoothStep(startRotCam - 360, endRotCam, t), pl.transform.eulerAngles.y, 0);
+            basicDoorRaycast.isRotatingUpward = true;
+            StartCoroutine(waitDown());
+        }
+        //}
+        IEnumerator waitUp()
+        {
+            yield return new WaitForSeconds(duration);
+            basicDoorRaycast.isRotatingDownward = false;
+        }
+        IEnumerator waitDown()
+        {
+            yield return new WaitForSeconds(duration);
+            basicDoorRaycast.isRotatingUpward = false;
+        }
+    }
+    
+
 }

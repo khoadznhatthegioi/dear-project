@@ -8,7 +8,7 @@ public class StatisticLine
     [MenuItem("Output total code lines/output")]
     private static void PrintTotalLine()
     {
-        string[] fileName = Directory.GetFiles("Assets/Scripts", "*.cs", SearchOption.AllDirectories);
+        string[] fileName = Directory.GetFiles("Assets/SScript", "*.cs", SearchOption.AllDirectories);
 
         int totalLine = 0;
         foreach (var temp in fileName)
