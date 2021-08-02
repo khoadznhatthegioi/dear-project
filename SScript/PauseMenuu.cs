@@ -20,7 +20,7 @@ public class PauseMenuu : MonoBehaviour
     [SerializeField] public Image crosshair = null;
     [SerializeField] public FirstPersonController player = null;
     //[SerializeField] public BlurOptimized blur = null;
-    public bool isPauseMenuAlreadyOn;
+    public static bool isPauseMenuAlreadyOn;
     public DisplayInventory displayInventory;
     public InventoryDisappear inventoryDisappear;
     public GameObject violinUi;
@@ -49,7 +49,7 @@ public class PauseMenuu : MonoBehaviour
         }
         if (video)
         {
-            if (video.activeInHierarchy == false && inventoryDisappear.isInventoryAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && documentsList.isListAlreadyOn == false && isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
+            if (!DisplayInventory.isFixing && video.activeInHierarchy == false && InventoryDisappear.isInventoryAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && DocumentsListDisappear.isListAlreadyOn == false && isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -74,7 +74,7 @@ public class PauseMenuu : MonoBehaviour
         }
         if (!video)
         {
-            if (inventoryDisappear.isInventoryAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && documentsList.isListAlreadyOn == false && isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
+            if (!DisplayInventory.isFixing && InventoryDisappear.isInventoryAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && DocumentsListDisappear.isListAlreadyOn == false && isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -134,43 +134,74 @@ public class PauseMenuu : MonoBehaviour
     }
     public void Resume()
     {
+        if (!PlayerData.moTuDien)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            pauseMenu.SetActive(false);
+            for (int i = 0; i < documentsUI.Length; i++)
+            {
+                documentsUI[i].SetActive(false);
+            }
+            //blur.enabled = false;
+            bgi.SetActive(false);
+            crosshair.enabled = true;
+            player.enabled = true;
+            Time.timeScale = 1f;
+            for (int i = 0; i < documentsList.giongNoiChuyen.Length; i++)
+            {
+                if (documentsList.alreadyPlayed[i] == true)
+                    documentsList.giongNoiChuyen[i].Play();
+            }
+            blurOut.SetActive(false);
+            if (zoomInRay != "")
+            {
+                (mainCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = true;
+            }
+            if (violinRaycast != "")
+            {
+                (mainCam.GetComponent(violinRaycast) as MonoBehaviour).enabled = true;
+            }
+            mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
+            (mainCam.GetComponent(putOnRay) as MonoBehaviour).enabled = true;
+            (mainCam.GetComponent(doorRaycast) as MonoBehaviour).enabled = true;
+            isPauseMenuAlreadyOn = false;
+            //if (PlayerData.nhinChaiBia || PlayerData.moTuDien || PlayerData.nhinDiary)
+            //{
+            //    crosshair.enabled = false;
+            //    Cursor.lockState = CursorLockMode.None;
+            //    Cursor.visible = true;
+            //}
+        }
+        else if (PlayerData.moTuDien)
+        {
+            pauseMenu.SetActive(false);
+           
+            Time.timeScale = 1f;
+            //blur.enabled = false;
+            bgi.SetActive(false);
+            blurOut.SetActive(false);
+            for (int i = 0; i < documentsList.giongNoiChuyen.Length; i++)
+            {
+                if (documentsList.alreadyPlayed[i] == true)
+                    documentsList.giongNoiChuyen[i].Play();
+            }
+            blurOut.SetActive(false);
+            if (zoomInRay != "")
+            {
+                //(mainCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = true;
+            }
+            if (violinRaycast != "")
+            {
+                (mainCam.GetComponent(violinRaycast) as MonoBehaviour).enabled = true;
+            }
+            mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
+            (mainCam.GetComponent(putOnRay) as MonoBehaviour).enabled = true;
+            (mainCam.GetComponent(doorRaycast) as MonoBehaviour).enabled = true;
+            isPauseMenuAlreadyOn = false;
+        }
         //Debug.Log("hoho");
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        pauseMenu.SetActive(false);
-        for (int i = 0; i < documentsUI.Length; i++)
-        {
-            documentsUI[i].SetActive(false);
-        }
-        //blur.enabled = false;
-        bgi.SetActive(false);
-        crosshair.enabled = true;
-        player.enabled = true;
-        Time.timeScale = 1f;
-        for (int i = 0; i < documentsList.giongNoiChuyen.Length; i++)
-        {
-            if (documentsList.alreadyPlayed[i] == true)
-                documentsList.giongNoiChuyen[i].Play();
-        }
-        blurOut.SetActive(false);
-        if (zoomInRay != "")
-        {
-            (mainCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = true;
-        }
-        if (violinRaycast != "")
-        {
-            (mainCam.GetComponent(violinRaycast) as MonoBehaviour).enabled = true;
-        }
-        mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
-        (mainCam.GetComponent(putOnRay) as MonoBehaviour).enabled = true;
-        (mainCam.GetComponent(doorRaycast) as MonoBehaviour).enabled = true;
-        isPauseMenuAlreadyOn = false;
-        if (PlayerData.nhinChaiBia || PlayerData.moTuDien || PlayerData.nhinDiary)
-        {
-            crosshair.enabled = false;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+       
     }
 
     public void Quit()

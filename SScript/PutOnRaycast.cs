@@ -15,7 +15,7 @@ public class PutOnRaycast : MonoBehaviour
     public string zoomInRay;
     [SerializeField] public bool isInteracting = false;
     public DisplayInventory displayInventory;
-    public BasicDoorController raycasted_obj;
+    public PutOn raycasted_obj;
     [Header("Key Codes")]
    // [SerializeField] private KeyCode openDoorKey = KeyCode.Mouse0;
 
@@ -24,7 +24,7 @@ public class PutOnRaycast : MonoBehaviour
     [SerializeField] Sprite uiCrosshairUnclicked;
     [SerializeField] Sprite uiCrosshairClicked;
     [HideInInspector] public bool interacting = false;
-    private bool isCrosshairActive;
+    public bool isCrosshairActive;
     private bool doOnce;
     const string showNameTag = "ShowName";
     public InventoryDisappear inventoryDisappear;
@@ -64,7 +64,7 @@ public class PutOnRaycast : MonoBehaviour
                 objectName.SetActive(true);
                 if (!interacting)
                 {
-                    raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
+                    raycasted_obj = hit.collider.gameObject.GetComponent<PutOn>();
                     //raycasted_obj.MainHighlight(true);
                     //objectName.GetComponent<Text>().text =  
                     nameFloatingIcons = "FloatingIcon" + raycasted_obj.name;
@@ -73,7 +73,7 @@ public class PutOnRaycast : MonoBehaviour
                     panelFloating = GameObject.Find(namePanelFloatingIcons);
                     if (panelFloating)
                     {
-                        panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                        //panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
                         panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                     }
                     if (floatingIcon)
@@ -92,13 +92,17 @@ public class PutOnRaycast : MonoBehaviour
 
                 if (Input.GetKeyUp(ExamineInputManager.instance.interactKey))
                 {
-                    if (panelFloating)
-                        panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
-                    if (inventoryDisappear.isInventoryAlreadyOn == false)
+                    //if (panelFloating)
+                    //    panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
+                    if (InventoryDisappear.isInventoryAlreadyOn == false)
                     {
                         inventoryDisappear.TurnOnInventory();
-                        PlayerData.nhinViolinStand = true;
-                        PlayerData.nhinBoNhang = true;
+                        if (raycasted_obj.gameObject.name == "Violin Stand")
+                        {
+                            PlayerData.nhinViolinStand = true;
+                        }
+                        if (raycasted_obj.name == "Incense Sticks")
+                            PlayerData.nhinBoNhang = true;
                         //objectName.SetActive(false);
                         //interacting = false;
                     }
@@ -113,7 +117,7 @@ public class PutOnRaycast : MonoBehaviour
             {
                 if (!interacting)
                 {
-                    raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
+                    raycasted_obj = hit.collider.gameObject.GetComponent<PutOn>();
                     //raycasted_obj.MainHighlight(true);
                     CrosshairChange(true);
                 }
@@ -124,6 +128,133 @@ public class PutOnRaycast : MonoBehaviour
                 {
 
                     PlayerStats.isAlarmTurnedOff = true;
+
+                }
+            }
+
+            if (hit.collider.CompareTag("PutOnSmall"))
+            {
+                //Debug.Log(hit.collider.gameObject.name);
+                //objectName.GetComponent<TextMeshProUGUI>().text = hit.collider.gameObject.name;
+                //animatorText.enabled = false;
+                //objectName.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
+                //objectName.SetActive(true);
+                if (!interacting)
+                {
+                    raycasted_obj = hit.collider.gameObject.GetComponent<PutOn>();
+                    raycasted_obj.GetComponent<EPOOutline.Outlinable>().enabled = true;
+                    ////raycasted_obj.MainHighlight(true);
+                    ////objectName.GetComponent<Text>().text =  
+                    //nameFloatingIcons = "FloatingIcon" + raycasted_obj.name;
+                    //namePanelFloatingIcons = "PanelFloating" + raycasted_obj.name;
+                    //floatingIcon = GameObject.Find(nameFloatingIcons);
+                    //panelFloating = GameObject.Find(namePanelFloatingIcons);
+                    //if (panelFloating)
+                    //{
+                    //    //panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                    //    panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
+                    //}
+                    //if (floatingIcon)
+                    //   float
+                    CrosshairChange(true);
+                }
+
+                isCrosshairActive = true;
+                interacting = true;
+
+                //if (Input.GetKeyDown(KeyCode.Mouse0))
+                //{
+                //    if (panelFloating)
+                //        panelFloating.GetComponent<Animator>().Play("FloatingPanel");
+                //}
+
+                if (Input.GetKeyUp(ExamineInputManager.instance.interactKey))
+                {
+                    //if (panelFloating)
+                    //    panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
+                    if (InventoryDisappear.isInventoryAlreadyOn == false)
+                    {
+                        inventoryDisappear.TurnOnInventory();
+                       
+                        if(raycasted_obj.gameObject.name == "Violin Stand")
+                        {
+                            PlayerData.nhinViolinStand = true;
+                        }
+                        if(raycasted_obj.name == "Incense Sticks")
+                            PlayerData.nhinBoNhang = true;
+
+                        if (raycasted_obj.gameObject.name == "BeerCap")
+                            PlayerData.nhinChaiBia = true;
+                        //objectName.SetActive(false);
+                        //interacting = false;
+                    }
+                    //if (panelFloating)
+                    //    panelFloating.SetActive(false);
+                    //if (floatingIcon)
+                    //    floatingIcon.SetActive(false);
+
+                }
+            }
+            if (hit.collider.CompareTag("PutOn"))
+            {
+                //Debug.Log(hit.collider.gameObject.name);
+                //objectName.GetComponent<TextMeshProUGUI>().text = hit.collider.gameObject.name;
+                //animatorText.enabled = false;
+                //objectName.GetComponent<TextMeshProUGUI>().color = new Color32(255, 255, 255, 255);
+                //objectName.SetActive(true);
+                if (!interacting)
+                {
+                    raycasted_obj = hit.collider.gameObject.GetComponent<PutOn>();
+                    raycasted_obj.GetComponent<EPOOutline.Outlinable>().enabled = true;
+                    //raycasted_obj.MainHighlight(true);
+                    //objectName.GetComponent<Text>().text =  
+                    nameFloatingIcons = "FloatingIcon" + raycasted_obj.name;
+                    namePanelFloatingIcons = "PanelFloating" + raycasted_obj.name;
+                    floatingIcon = GameObject.Find(nameFloatingIcons);
+                    panelFloating = GameObject.Find(namePanelFloatingIcons);
+                    if (panelFloating)
+                    {
+                        //panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                        panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
+                    }
+                    if (floatingIcon)
+                        floatingIcon.GetComponent<Animator>().Play("ExpandFloating");
+                    CrosshairChange(true);
+                }
+
+                isCrosshairActive = true;
+                interacting = true;
+
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    if (panelFloating)
+                        panelFloating.GetComponent<Animator>().Play("FloatingPanel");
+                }
+
+                if (Input.GetKeyUp(ExamineInputManager.instance.interactKey))
+                {
+                    //if (panelFloating)
+                    //    panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
+                    if (InventoryDisappear.isInventoryAlreadyOn == false)
+                    {
+                        inventoryDisappear.TurnOnInventory();
+
+                        if (raycasted_obj.gameObject.name == "Violin Stand")
+                        {
+                            PlayerData.nhinViolinStand = true;
+                        }
+                        if (raycasted_obj.name == "Incense Sticks")
+                            PlayerData.nhinBoNhang = true;
+
+                        if (raycasted_obj.gameObject.name == "BeerCap")
+                            PlayerData.nhinChaiBia = true;
+                        //objectName.SetActive(false);
+                        //interacting = false;
+                    }
+                    if (panelFloating)
+                        panelFloating.SetActive(false);
+                    if (floatingIcon)
+                        floatingIcon.SetActive(false);
 
                 }
             }
@@ -153,9 +284,12 @@ public class PutOnRaycast : MonoBehaviour
             //uiHandLookAt.SetActive(false);
             if (panelFloating)
             {
-                panelFloating.GetComponent<Animator>().Play("FloatingPanelExit");
+                //panelFloating.GetComponent<Animator>().Play("FloatingPanelExit");
                 panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(58, 58);
             }
+
+            if(raycasted_obj != null && raycasted_obj.GetComponent<EPOOutline.Outlinable>())
+            raycasted_obj.GetComponent<EPOOutline.Outlinable>().enabled = false;
 
             if (floatingIcon)
                 floatingIcon.GetComponent<Animator>().Play("ExpandFloatingReverse");

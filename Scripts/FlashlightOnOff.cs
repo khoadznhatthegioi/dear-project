@@ -24,7 +24,7 @@ namespace ExamineSystem
             {
                 lightSource.SetActive(false);
             }
-            if (Input.GetButtonDown("FKey") && flashlight.activeInHierarchy == true && ExamineRaycast.isExamining == false && documentsList.activeInHierarchy == false && inventoryDisappear.isInventoryAlreadyOn == false)
+            if (Input.GetButtonDown("FKey") && flashlight.activeInHierarchy == true && ExamineRaycast.isExamining == false && !DocumentsListDisappear.isListAlreadyOn&& InventoryDisappear.isInventoryAlreadyOn == false && !PauseMenuu.isPauseMenuAlreadyOn)
             {
                 if (isOn == false && failSafe == false)
                 {
@@ -35,7 +35,7 @@ namespace ExamineSystem
                     StartCoroutine(FailSafe());
 
                 }
-                if (isOn == true && failSafe == false && ExamineRaycast.isExamining == false && documentsList.activeInHierarchy == false && inventoryDisappear.isInventoryAlreadyOn == false)
+                if (isOn == true && failSafe == false && ExamineRaycast.isExamining == false && !DocumentsListDisappear.isListAlreadyOn && InventoryDisappear.isInventoryAlreadyOn == false && !PauseMenuu.isPauseMenuAlreadyOn)
                 {
                     failSafe = true;
                     lightSource.SetActive(false);

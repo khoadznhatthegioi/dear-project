@@ -20,7 +20,7 @@ namespace ExamineSystem
         [SerializeField] public Image crosshair = null;
         [SerializeField] public FirstPersonController player = null;
 //[SerializeField] public BlurOptimized blur = null;
-        public bool isInventoryAlreadyOn;
+        public static bool isInventoryAlreadyOn;
         public DisplayInventory displayInventory;
         public GameObject violinUi;
         public BoxCollider violinBdCollider;
@@ -51,7 +51,7 @@ namespace ExamineSystem
             }
             if (video)
             {
-                if (isInventoryAlreadyOn == false && video.activeInHierarchy == false && documentsList.isListAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && pauseMenu.isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
+                if (!DisplayInventory.isFixing && isInventoryAlreadyOn == false && video.activeInHierarchy == false && DocumentsListDisappear.isListAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && PauseMenuu.isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
@@ -72,12 +72,17 @@ namespace ExamineSystem
                             Cursor.visible = true;
                         }
 
-                        if((mainCam.GetComponent(putOnRay) as PutOnRaycast).raycasted_obj != null)
+                        try
                         {
-                            (mainCam.GetComponent(putOnRay) as PutOnRaycast).panelFloating.SetActive(true);
-                            (mainCam.GetComponent(putOnRay) as PutOnRaycast).panelFloating.GetComponent<Image>().color = new Color32(255, 255, 255, 26);
-                            (mainCam.GetComponent(putOnRay) as PutOnRaycast).floatingIcon.SetActive(true);
+                            if (mainCam.GetComponent<PutOnRaycast>().raycasted_obj != null || mainCam.GetComponent<PutOnRaycast>().panelFloating)
+                            {
+                                mainCam.GetComponent<PutOnRaycast>().panelFloating.SetActive(true);
+                                mainCam.GetComponent<PutOnRaycast>().panelFloating.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+                                mainCam.GetComponent<PutOnRaycast>().floatingIcon.SetActive(true);
+                            }
                         }
+                        catch { }
+                       
                         ClickingOnObjectTest.i = false;
                     }
 
@@ -86,7 +91,7 @@ namespace ExamineSystem
 
             if (!video)
             {
-                if (isInventoryAlreadyOn == false && documentsList.isListAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && pauseMenu.isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
+                if (!DisplayInventory.isFixing && isInventoryAlreadyOn == false && DocumentsListDisappear.isListAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && PauseMenuu.isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
@@ -109,7 +114,7 @@ namespace ExamineSystem
                         if ((mainCam.GetComponent(putOnRay) as PutOnRaycast).raycasted_obj != null)
                         {
                             (mainCam.GetComponent(putOnRay) as PutOnRaycast).panelFloating.SetActive(true);
-                            (mainCam.GetComponent(putOnRay) as PutOnRaycast).panelFloating.GetComponent<Image>().color = new Color32(255,255,255,26);
+                            (mainCam.GetComponent(putOnRay) as PutOnRaycast).panelFloating.GetComponent<Image>().color = new Color32(255,255,255,0);
                             (mainCam.GetComponent(putOnRay) as PutOnRaycast).floatingIcon.SetActive(true);
                         }
                         ClickingOnObjectTest.i = false;
@@ -157,37 +162,71 @@ namespace ExamineSystem
 
         public void TurnOffInventory()
         {
+            if (!PlayerData.moTuDien)
+            {
+                var position = rectTransform.position;
+                position.x = 6666;
+                rectTransform.position = position;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                //blur.enabled = false;
+                bgi.SetActive(false);
+                crosshair.enabled = true;
+                player.enabled = true;
+                Time.timeScale = 1f;
+                for (int i = 0; i < documentsList.giongNoiChuyen.Length; i++)
+                {
+                    if (documentsList.alreadyPlayed[i] == true)
+                        documentsList.giongNoiChuyen[i].Play();
+                }
+                blurOut.SetActive(false);
+                if (zoomInRay != "")
+                {
+                    (mainCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = true;
+                }
+                if (violinRaycast != "")
+                {
+                    (mainCam.GetComponent(violinRaycast) as MonoBehaviour).enabled = true;
+                }
+                mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
+                (mainCam.GetComponent(putOnRay) as MonoBehaviour).enabled = true;
+                (mainCam.GetComponent(doorRay) as MonoBehaviour).enabled = true;
+                isInventoryAlreadyOn = false;
+                PlayerData.nhinViolinStand = false;
+                PlayerData.nhinBoNhang = false;
+                PlayerData.nhinChaiBia = false;
+            }
+            else if (PlayerData.moTuDien)
+            {
+                var position = rectTransform.position;
+                position.x = 6666;
+                rectTransform.position = position;
+                
+                Time.timeScale = 1f;
+                //blur.enabled = false;
+                bgi.SetActive(false);
+                blurOut.SetActive(false);
+                for (int i = 0; i < documentsList.giongNoiChuyen.Length; i++)
+                {
+                    if (documentsList.alreadyPlayed[i] == true)
+                        documentsList.giongNoiChuyen[i].Play();
+                }
+                blurOut.SetActive(false);
+                if (zoomInRay != "")
+                {
+                    //(mainCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = true;
+                }
+                if (violinRaycast != "")
+                {
+                    (mainCam.GetComponent(violinRaycast) as MonoBehaviour).enabled = true;
+                }
+                mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
+                (mainCam.GetComponent(putOnRay) as MonoBehaviour).enabled = true;
+                (mainCam.GetComponent(doorRay) as MonoBehaviour).enabled = true;
+                isInventoryAlreadyOn = false;
+            }
             //Debug.Log("hoho");
-            var position = rectTransform.position;
-            position.x = 6666;
-            rectTransform.position = position;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            //blur.enabled = false;
-            bgi.SetActive(false);
-            crosshair.enabled = true;
-            player.enabled = true;
-            Time.timeScale = 1f;
-            for (int i = 0; i < documentsList.giongNoiChuyen.Length; i++)
-            {
-                if (documentsList.alreadyPlayed[i] == true)
-                    documentsList.giongNoiChuyen[i].Play();
-            }
-            blurOut.SetActive(false);
-            if (zoomInRay != "")
-            {
-                (mainCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = true;
-            }
-            if (violinRaycast != "")
-            {
-                (mainCam.GetComponent(violinRaycast) as MonoBehaviour).enabled = true;
-            }
-            mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
-            (mainCam.GetComponent(putOnRay) as MonoBehaviour).enabled = true;
-            (mainCam.GetComponent(doorRay) as MonoBehaviour).enabled = true;
-            isInventoryAlreadyOn = false;
-            PlayerData.nhinViolinStand = false;
-            PlayerData.nhinBoNhang = false;
+           
         }
        
     }

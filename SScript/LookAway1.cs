@@ -8,14 +8,14 @@ using ExamineSystem;
     public class LookAway1 : MonoBehaviour
     {
         public GameObject fpsController;
-        public ZoomInTriggerRaycast thePlayer;
+        public ZoomInTriggerRaycastUnused thePlayer;
         public GameObject invisibleObject;
         //public GameObject buttonOnObject;
         [SerializeField] private Image crosshair = null;
         public GameObject bgz;
         //public GameObject tudien;
         public DisplayInventory displayInventory;
-        public ZoomInTriggerRaycast zoom;
+        public ZoomInTriggerRaycastUnused zoom;
         public SimplyABool boolean;
 
         // Start is called before the first frame update

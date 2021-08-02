@@ -51,6 +51,7 @@ namespace ExamineSystem
         public static bool sceneLoaded1;
         public static bool sceneLoaded2;
         public static bool sceneLoaded3;
+        public static bool isFixing;
         public GameObject chaiBiaCamera;
         public GameObject player;
         public ExamineRaycast examineRaycast;
@@ -275,12 +276,24 @@ namespace ExamineSystem
                             {
                                 inventory.RemoveItem(itemsDisplayed[obj].item);
                                 //Debug.Log("hoho");
+                                isFixing = true;
                                 sth.TurnOffInventory();
                                 sth.crosshair.enabled = false;
-                                if (tudienCollider)
-                                    Destroy(tudienCollider);
+                                Cursor.lockState = CursorLockMode.Locked;
+                                Cursor.visible = false;
+                                //if (tudienCollider)
+                                //    Destroy(tudienCollider);
                                 zoom.noiDay.GetComponent<EPOOutline.Outlinable>().enabled = false;
-                                PlayerData.daSua = true;
+                                Destroy(zoom.floatingIconTuDien);
+
+                                StartCoroutine(fixing());
+                                IEnumerator fixing()
+                                {
+                                    yield return new WaitForSeconds(3f);
+                                    isFixing = false;
+                                    PlayerData.daSua = true;
+                                }
+                                
                                 //sudungrasaoghivaoday(nhuanimation,...)                        
                             }
                             else
@@ -304,6 +317,7 @@ namespace ExamineSystem
                                 cuocNoiChuyen.Play();
                                 volumeNoiChuyen.SetActive(true);
                                 denTvBat.SetActive(true);
+                                zoom.crosshair.sprite = zoom.crosshairUnclicked;
                                 //saveSystem.Save();
                                 StartCoroutine(SauCuocNoiChuyen());
 
@@ -410,7 +424,7 @@ namespace ExamineSystem
                                 (sth.mainCam.GetComponent(sth.putOnRay) as MonoBehaviour).enabled = true;
                                 (sth.mainCam.GetComponent(sth.doorRay) as MonoBehaviour).enabled = true;
 
-                                sth.isInventoryAlreadyOn = false;
+                                InventoryDisappear.isInventoryAlreadyOn = false;
                                 if (diary)
                                     Destroy(diary);
                                 sceneLoaded2 = true;
@@ -526,7 +540,7 @@ namespace ExamineSystem
             sth.TurnOffInventory();
             if (PlayerData.nhinChaiBia || PlayerData.moTuDien || PlayerData.nhinDiary)
             {
-                sth.crosshair.enabled = false;
+                sth.crosshair.enabled = true;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }

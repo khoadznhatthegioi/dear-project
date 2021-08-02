@@ -23,7 +23,7 @@ namespace ExamineSystem
         [SerializeField] public Image crosshair = null;
         [SerializeField] public FirstPersonController player = null;
         //[SerializeField] public BlurOptimized blur = null;
-        public bool isListAlreadyOn;
+        public static bool isListAlreadyOn;
         public DisplayInventory displayInventory;
         public InventoryDisappear inventoryDisappear;
         public GameObject violinUi;
@@ -55,7 +55,7 @@ namespace ExamineSystem
             }
             if (video)
             {
-                if (isListAlreadyOn == false && video.activeInHierarchy == false && inventoryDisappear.isInventoryAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && pauseMenu.isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
+                if (!DisplayInventory.isFixing && isListAlreadyOn == false && video.activeInHierarchy == false && InventoryDisappear.isInventoryAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && PauseMenuu.isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
                 {
                     if (Input.GetKeyDown(KeyCode.Tab))
                     {
@@ -81,7 +81,7 @@ namespace ExamineSystem
 
             if (!video)
             {
-                if (isListAlreadyOn == false && inventoryDisappear.isInventoryAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && pauseMenu.isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
+                if (!DisplayInventory.isFixing && isListAlreadyOn == false && InventoryDisappear.isInventoryAlreadyOn == false && CheckBool.isBuffering == false && imageSaving.activeInHierarchy == false && PauseMenuu.isPauseMenuAlreadyOn == false && !ViolinBieuDienRaycast.isSolvingPasssword)
                 {
                     if (Input.GetKeyDown(KeyCode.Tab))
                     {
@@ -144,37 +144,68 @@ namespace ExamineSystem
 
         public void TurnOffList()
         {
+            if (!PlayerData.moTuDien)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                documentsList.SetActive(false);
+                for (int i = 0; i < documentsUI.Length; i++)
+                {
+                    documentsUI[i].SetActive(false);
+                }
+                //blur.enabled = false;
+                bgi.SetActive(false);
+                crosshair.enabled = true;
+                player.enabled = true;
+                Time.timeScale = 1f;
+                for (int i = 0; i < giongNoiChuyen.Length; i++)
+                {
+                    if (alreadyPlayed[i] == true)
+                        giongNoiChuyen[i].Play();
+                }
+                blurOut.SetActive(false);
+                if (zoomInRay != "")
+                {
+                    (mainCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = true;
+                }
+                if (violinRaycast != "")
+                {
+                    (mainCam.GetComponent(violinRaycast) as MonoBehaviour).enabled = true;
+                }
+                mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
+                (mainCam.GetComponent(putOnRay) as MonoBehaviour).enabled = true;
+                (mainCam.GetComponent(doorRay) as MonoBehaviour).enabled = true;
+                isListAlreadyOn = false;
+            }
+            else if (PlayerData.moTuDien)
+            {
+                documentsList.SetActive(false);
+                
+                Time.timeScale = 1f;
+                //blur.enabled = false;
+                bgi.SetActive(false);
+                blurOut.SetActive(false);
+                for (int i = 0; i < giongNoiChuyen.Length; i++)
+                {
+                    if (alreadyPlayed[i] == true)
+                        giongNoiChuyen[i].Play();
+                }
+                blurOut.SetActive(false);
+                if (zoomInRay != "")
+                {
+                    //(mainCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = true;
+                }
+                if (violinRaycast != "")
+                {
+                    (mainCam.GetComponent(violinRaycast) as MonoBehaviour).enabled = true;
+                }
+                mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
+                (mainCam.GetComponent(putOnRay) as MonoBehaviour).enabled = true;
+                (mainCam.GetComponent(doorRay) as MonoBehaviour).enabled = true;
+                isListAlreadyOn = false;
+            }
             //Debug.Log("hoho");
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            documentsList.SetActive(false);
-            for (int i = 0; i < documentsUI.Length; i++)
-            {
-                documentsUI[i].SetActive(false);
-            }
-            //blur.enabled = false;
-            bgi.SetActive(false);
-            crosshair.enabled = true;
-            player.enabled = true;
-            Time.timeScale = 1f;
-            for (int i = 0; i < giongNoiChuyen.Length; i++)
-            {
-                if (alreadyPlayed[i] == true)
-                    giongNoiChuyen[i].Play();
-            }
-            blurOut.SetActive(false);
-            if (zoomInRay != "")
-            {
-                (mainCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = true;
-            }
-            if (violinRaycast != "")
-            {
-                (mainCam.GetComponent(violinRaycast) as MonoBehaviour).enabled = true;
-            }
-            mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
-            (mainCam.GetComponent(putOnRay) as MonoBehaviour).enabled = true;
-            (mainCam.GetComponent(doorRay) as MonoBehaviour).enabled = true;
-            isListAlreadyOn = false;
+           
         }
     }
 

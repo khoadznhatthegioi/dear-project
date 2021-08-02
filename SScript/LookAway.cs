@@ -8,14 +8,14 @@ using EPOOutline;
     public class LookAway : MonoBehaviour
     {
         public GameObject fpsController;
-        public ZoomInTriggerRaycast thePlayer;
+        public ZoomInTriggerRaycastUnused thePlayer;
         public GameObject invisibleObject;
         public GameObject buttonOnObject;
         [SerializeField] private Image crosshair = null;
         public GameObject bgz;
         //public GameObject tudien;
         public DisplayInventory displayInventory;
-        public ZoomInTriggerRaycast zoom;
+        public ZoomInTriggerRaycastUnused zoom;
         public SimplyABool boolean;
     [SerializeField] ClickingOnObjectTest click;
 
@@ -33,7 +33,7 @@ using EPOOutline;
             {
                 if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
-                    if (boolean.waitForAnimationEnd == false)
+                    if (boolean.waitForAnimationEnd == false && !DocumentsListDisappear.isListAlreadyOn && !PauseMenuu.isPauseMenuAlreadyOn && !InventoryDisappear.isInventoryAlreadyOn)
                     {
                     zoom.noiDay.SetActive(false);
                         bgz.SetActive(true);

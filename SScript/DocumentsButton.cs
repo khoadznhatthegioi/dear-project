@@ -6,19 +6,6 @@ public class DocumentsButton : MonoBehaviour
 {
 
     public GameObject[] documentsUI;
-
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void Document1()
     {
         documentsUI[0].SetActive(true);

@@ -1,11 +1,12 @@
-using System.Collections; 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ExamineSystem;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class PlayerStats : MonoBehaviour { 
+public class PlayerStats : MonoBehaviour
+{
 
     public InventoryObject inventory;
     public GameObject firstSavedObject;
@@ -31,7 +32,7 @@ public class PlayerStats : MonoBehaviour {
     public static bool check2;
     public static bool check3;
     public static bool check4;
-    public static bool check5= false;
+    public static bool check5 = false;
     public static bool check6;
     public static bool check7;
     public static bool check8;
@@ -62,35 +63,35 @@ public class PlayerStats : MonoBehaviour {
     ImageLoading im;
     PlayerData data;
     // [SerializeField] public PlayerData playerData;
- 
+
     private void Update()
     {
         if (!imageLoading)
         {
-            if (Resources.FindObjectsOfTypeAll<ImageLoading>().Length>0)
+            if (Resources.FindObjectsOfTypeAll<ImageLoading>().Length > 0)
             {
                 im = Resources.FindObjectsOfTypeAll<ImageLoading>()[0];
                 imageLoading = im.gameObject;
             }
-                
+
         }
-        if ( isRight == true || qv == true)
+        if (isRight == true || qv == true)
         {
             if (panel1)
             {
                 panel1.SetActive(true);
-                
-                
+
+
             }
-            
+
         }
-        if(SaveSystem.isNewGame == false && check10 == false)
+        if (SaveSystem.isNewGame == false && check10 == false)
         {
-            if(panel1)
-            panel1.SetActive(true);
-            
+            if (panel1)
+                panel1.SetActive(true);
+
         }
-        if(check1 == false)
+        if (check1 == false)
         {
             if (PlayerData.firstSaved == true)
             {
@@ -101,10 +102,10 @@ public class PlayerStats : MonoBehaviour {
                     //SceneManager.LoadSceneAsync("level1");
                     StartCoroutine(LoadAsynchronously("level1"));
 
-                    
+
                     check11 = true;
                 }
-                
+
                 StartCoroutine(wait());
                 IEnumerator wait()
                 {
@@ -128,20 +129,20 @@ public class PlayerStats : MonoBehaviour {
                     }
                     check1 = true;
                 }
-                
-               
-                
+
+
+
             }
         }
-        
-        if(check2 == false)
+
+        if (check2 == false)
         {
             if (PlayerData.secondSaved == true)
             {
-                
+
                 inventoryObject.Save();
                 saveSystem.Save();
-                if(DisplayInventory.sceneLoaded1 == false && check12 == false)
+                if (DisplayInventory.sceneLoaded1 == false && check12 == false)
                 {
 
 
@@ -156,13 +157,13 @@ public class PlayerStats : MonoBehaviour {
                 {
                     yield return new WaitForSeconds(2f);
                     //cac poster xuat hien,........
-                    if(violin)
-                    violin.SetActive(false);
-                    if(violinStandCollider)
-                    violinStandCollider.SetActive(false);
-                    if(diary)
-                    diary.SetActive(true);
-                    if(PlayerData.thirdSaved == false && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false && PlayerData.seventhSaved == false && DisplayInventory.sceneLoaded1 == false)
+                    if (violin)
+                        violin.SetActive(false);
+                    if (violinStandCollider)
+                        violinStandCollider.SetActive(false);
+                    if (diary)
+                        diary.SetActive(true);
+                    if (PlayerData.thirdSaved == false && PlayerData.fourthSaved == false && PlayerData.fifthSaved == false && PlayerData.sixthSaved == false && PlayerData.seventhSaved == false && DisplayInventory.sceneLoaded1 == false)
                     {
                         //fpsc.enabled = false;
                         fpsController.transform.position = new Vector3(1, 0.88f, 11);
@@ -175,18 +176,18 @@ public class PlayerStats : MonoBehaviour {
                     }
                     check2 = true;
                 }
-                
+
             }
         }
-        
-        if(check3 == false)
+
+        if (check3 == false)
         {
             if (PlayerData.thirdSaved == true)
             {
                 //Debug.Log("ASDJsakjdsklajdklsajdsklajdklasjdsklajdklsajdsklajdkslajdiowqdjiojdskajdwi");
                 inventoryObject.Save();
                 saveSystem.Save();
-                if(DisplayInventory.sceneLoaded2 == false && check13 == false)
+                if (DisplayInventory.sceneLoaded2 == false && check13 == false)
                 {
 
 
@@ -217,27 +218,27 @@ public class PlayerStats : MonoBehaviour {
                             //fpsc.enabled = true;
 
                             Destroy(video);
-                            check3 = true; 
+                            check3 = true;
                         }
                     }
                     else
                     {
-                        check3 = true; 
+                        check3 = true;
                     }
-                        
-                    
-                    
-                    
+
+
+
+
                 }
                 //avideo.SetActive(true);
                 //nhu o second, cac poster xuat hien, nhung co nhung canh sau khi video bat
-                
+
             }
         }
 
-        if(check4 == false)
+        if (check4 == false)
         {
-            if(PlayerData.fourthSaved == true)
+            if (PlayerData.fourthSaved == true)
             {
                 //panel1.SetActive(true);
                 //dung cai khac de lam cutscene dau level3
@@ -248,11 +249,11 @@ public class PlayerStats : MonoBehaviour {
             }
         }
 
-        if(check5 == false)
+        if (check5 == false)
         {
             if (PlayerData.fifthSaved == true)
             {
-                
+
                 inventoryObject.Save();
                 saveSystem.Save();
                 if (fifthSavedObject)
@@ -272,7 +273,7 @@ public class PlayerStats : MonoBehaviour {
                     if (PlayerData.sixthSaved == false && PlayerData.seventhSaved == false && DisplayInventory.sceneLoaded3 == false)
                     {
 
-                       // fpsc.enabled = false;
+                        // fpsc.enabled = false;
                         fpsController.transform.position = new Vector3(-4, 0.88f, -1);
                         StartCoroutine(w1());
                         IEnumerator w1()
@@ -285,17 +286,17 @@ public class PlayerStats : MonoBehaviour {
                         check5 = true;
                     }
                     else check5 = true;
-                    
 
-                    
-                    
+
+
+
                 }
             }
         }
 
-        if(check6 == false)
+        if (check6 == false)
         {
-            if(PlayerData.sixthSaved == true)
+            if (PlayerData.sixthSaved == true)
             {
                 inventoryObject.Save();
                 saveSystem.Save();
@@ -328,17 +329,17 @@ public class PlayerStats : MonoBehaviour {
                             check6 = true;
                         }
                     }
-                    
+
                     else check6 = true;
                 }
-               
-                
-                   
-                
+
+
+
+
             }
         }
 
-        if(check7 == false)
+        if (check7 == false)
         {
             if (PlayerData.usedAmulet == true)
             {
@@ -348,32 +349,32 @@ public class PlayerStats : MonoBehaviour {
             }
         }
 
-        if(check8 == false)
+        if (check8 == false)
         {
-            if(PlayerData.wasntAbleToEscapeFromQuaiVat == true)
+            if (PlayerData.wasntAbleToEscapeFromQuaiVat == true)
             {
                 inventoryObject.Save();
                 saveSystem.Save();
                 check8 = true;
             }
         }
-        if(check9 == false)
+        if (check9 == false)
         {
-            if(PlayerData.seventhSaved == true)
+            if (PlayerData.seventhSaved == true)
             {
                 inventoryObject.Save();
                 saveSystem.Save();
                 StartCoroutine(WaitSceneLoad4());
                 if (BasicDoorRaycast.sceneLoaded2 == false)
                 {
-                    if(check16 == false)
+                    if (check16 == false)
                     {
 
                         //panel1.SetActive(true);
                         SceneManager.LoadSceneAsync("level4", LoadSceneMode.Additive);
                         check16 = true;
                     }
-                    if(check17 == false)
+                    if (check17 == false)
                     {
                         StartCoroutine(w1());
                         IEnumerator w1()
@@ -384,7 +385,7 @@ public class PlayerStats : MonoBehaviour {
                             check17 = true;
                         }
                     }
-                   
+
                 }
                 IEnumerator WaitSceneLoad4()
                 {
@@ -393,7 +394,7 @@ public class PlayerStats : MonoBehaviour {
                     {
                         //fpsc.enabled = false;
                         fpsController.transform.position = new Vector3(1, 0.88f, 6);
-                        
+
                         StartCoroutine(w());
                         IEnumerator w()
                         {
@@ -401,7 +402,7 @@ public class PlayerStats : MonoBehaviour {
                             //fpsc.enabled = true;
                             nhungThuBenKia.SetActive(false);
                             check9 = true;
-                            
+
                         }
 
                     }
@@ -411,8 +412,8 @@ public class PlayerStats : MonoBehaviour {
                         check9 = true;
                     }
                 }
-                
-                
+
+
             }
         }
 
@@ -427,9 +428,9 @@ public class PlayerStats : MonoBehaviour {
                 check20 = true;
             }
         }
-        if(check21 == false)
+        if (check21 == false)
         {
-            if(PlayerData.document1 == true)
+            if (PlayerData.document1 == true)
             {
                 StartCoroutine(wait());
                 IEnumerator wait()
@@ -440,9 +441,9 @@ public class PlayerStats : MonoBehaviour {
             }
         }
 
-        if(check22 == false)
+        if (check22 == false)
         {
-            if(PlayerData.document2 == true)
+            if (PlayerData.document2 == true)
             {
                 StartCoroutine(wait());
                 IEnumerator wait()
@@ -452,14 +453,14 @@ public class PlayerStats : MonoBehaviour {
                 }
             }
         }
-       
+
 
     }
     public void SavePlayer()
     {
         Debug.Log("saysth");
-        
-        
+
+
     }
 
     public void LoadPlayer()
@@ -486,13 +487,13 @@ public class PlayerStats : MonoBehaviour {
 
             //float progress = Mathf.Clamp01(operation.progress / .9f);
             //slider.value = progress;
-        //    imageLoading.SetActive(true);
+            //    imageLoading.SetActive(true);
             yield return null;
         }
     }
     //public static PlayerStats instance;
 
-    
+
 
 
     public IEnumerator LoadAsynchronouslyAdditive(string sceneName)
@@ -517,7 +518,7 @@ public class PlayerStats : MonoBehaviour {
         AsyncOperation operation1 = SceneManager.LoadSceneAsync(sceneNameLoad, LoadSceneMode.Additive);
         AsyncOperation operation2 = SceneManager.UnloadSceneAsync(sceneNameUnload);
 
-        while(!operation1.isDone && !operation2.isDone)
+        while (!operation1.isDone && !operation2.isDone)
         {
             float progress = Mathf.Clamp01((operation1.progress + operation2.progress) / .9f);
             slider.value = progress;
@@ -532,9 +533,9 @@ public class PlayerStats : MonoBehaviour {
     {
         inventory.Container.Items = new InventorySlot[6];
     }
-    public void RotatePlayer(float startRot, float endRot, float duration, GameObject pl, float startRotCam, float endRotCam,GameObject cam, float startTime)
+    public void RotatePlayer(float startRot, float endRot, float duration, GameObject pl, float startRotCam, float endRotCam, GameObject cam, float startTime, BasicDoorRaycast basicDoorRaycast)
     {
-        
+
         //var i = 0.0f;
         //var rate = 1.0f / rotateTime;
         //while (i < 1.0f)
@@ -542,61 +543,87 @@ public class PlayerStats : MonoBehaviour {
         //float t = (Time.time - startTime) / rotateTime;
         //rotateObject.transform.eulerAngles = Vector3.RotateTowards(startRot, endRot, Mathf.SmoothStep(0.0f, 1.0f,t)* Time.deltaTime, 1f);
         float t = (Time.time - startTime) / duration;
-        
-        if(pl.transform.eulerAngles.y <= 180 && basicDoorRaycast.isRotatingRightwise == false)
+        bool p = false;
+        bool c = false;
+        if (endRotCam >= 180 && !p)
         {
+            endRotCam -= 360;
+            p = true;
+        }
+        if (endRot >= 180 && !c)
+        {
+            endRot -= 360;
+            c = true;
+        }
+
+        if (startRot <= 180)
             pl.transform.eulerAngles = new Vector3(0, Mathf.SmoothStep(startRot, endRot, t), 0);
-            basicDoorRaycast.isRotatingLeftwise = true;
-            StartCoroutine(waitLeft());
-           
-        }
-            
-        else if(pl.transform.eulerAngles.y > 180 && basicDoorRaycast.isRotatingLeftwise == false)
-        {
-            pl.transform.eulerAngles = new Vector3(0, Mathf.SmoothStep(startRot-360, endRot, t), 0);
-            basicDoorRaycast.isRotatingRightwise = true;
-            StartCoroutine(waitRight());
-        }
-        //}
-        IEnumerator waitLeft()
-        {
-            yield return new WaitForSeconds(duration);
-            basicDoorRaycast.isRotatingLeftwise = false;
-        }
-        IEnumerator waitRight()
-        {
-            yield return new WaitForSeconds(duration);
-            basicDoorRaycast.isRotatingRightwise = false;
-        }
+        else if (startRot > 180)
+            pl.transform.eulerAngles = new Vector3(0, Mathf.SmoothStep(startRot - 360, endRot, t), 0);
 
-        //float t = (Time.time - startTime) / duration;
-
-        if (cam.transform.eulerAngles.x <= 180 && basicDoorRaycast.isRotatingUpward == false)
-        {
+        if (startRotCam <= 180)
             cam.transform.eulerAngles = new Vector3(Mathf.SmoothStep(startRotCam, endRotCam, t), pl.transform.eulerAngles.y, 0);
-            basicDoorRaycast.isRotatingDownward = true;
-            StartCoroutine(waitUp());
-
-        }
-
-        else if (cam.transform.eulerAngles.x > 180 && basicDoorRaycast.isRotatingDownward == false)
-        {
+        else if (startRotCam > 180)
             cam.transform.eulerAngles = new Vector3(Mathf.SmoothStep(startRotCam - 360, endRotCam, t), pl.transform.eulerAngles.y, 0);
-            basicDoorRaycast.isRotatingUpward = true;
-            StartCoroutine(waitDown());
-        }
-        //}
-        IEnumerator waitUp()
-        {
-            yield return new WaitForSeconds(duration);
-            basicDoorRaycast.isRotatingDownward = false;
-        }
-        IEnumerator waitDown()
-        {
-            yield return new WaitForSeconds(duration);
-            basicDoorRaycast.isRotatingUpward = false;
-        }
     }
-    
+   public void RotatePlayer(float startRot, float endRot, float duration, GameObject pl, float startRotCam, float endRotCam, GameObject cam, float startTime, ZoomInTriggerRaycast basicDoorRaycast)
+    {
+        float t = (Time.time - startTime) / duration;
+        bool p = false;
+        bool c = false;
+        if (endRotCam >= 180 && !p)
+        {
+            endRotCam -= 360;
+            p = true;
+        }
+        if (endRot >= 180 && !c)
+        {
+            endRot -= 360;
+            c = true;
+        }
+
+        if (startRot <= 180)
+            pl.transform.eulerAngles = new Vector3(0, Mathf.SmoothStep(startRot, endRot, t), 0);
+        else if (startRot > 180)
+            pl.transform.eulerAngles = new Vector3(0, Mathf.SmoothStep(startRot - 360, endRot, t), 0);
+
+        if (startRotCam <= 180)
+            cam.transform.eulerAngles = new Vector3(Mathf.SmoothStep(startRotCam, endRotCam, t), pl.transform.eulerAngles.y, 0);
+        else if (startRotCam > 180)
+            cam.transform.eulerAngles = new Vector3(Mathf.SmoothStep(startRotCam - 360, endRotCam, t), pl.transform.eulerAngles.y, 0);
+    }
+    public void RotatePlayer(float startRot, float endRot, float duration, GameObject pl, float startRotCam, float endRotCam, GameObject cam, float startTime, ZoomInController basicDoorRaycast)
+    {
+        float t = (Time.time - startTime) / duration;
+        bool p = false;
+        bool c = false;
+        if (endRotCam >= 180 && !p)
+        {
+            endRotCam -= 360;
+            p = true;
+        }
+        if (endRot >= 180 && !c)
+        {
+            endRot -= 360;
+            c = true;
+        }
+
+        if (startRot <= 180)
+            pl.transform.eulerAngles = new Vector3(0, Mathf.SmoothStep(startRot, endRot, t), 0);
+        else if (startRot > 180)
+            pl.transform.eulerAngles = new Vector3(0, Mathf.SmoothStep(startRot - 360, endRot, t), 0);
+
+        if (startRotCam <= 180)
+            cam.transform.eulerAngles = new Vector3(Mathf.SmoothStep(startRotCam, endRotCam, t), pl.transform.eulerAngles.y, 0);
+        else if (startRotCam > 180)
+            cam.transform.eulerAngles = new Vector3(Mathf.SmoothStep(startRotCam - 360, endRotCam, t), pl.transform.eulerAngles.y, 0);
+    }
+    public void Handheldaaa()
+    {
+        basicDoorRaycast.player.enabled = true;
+        basicDoorRaycast.player.m_MouseLook.Init(basicDoorRaycast.player.transform, transform);
+
+    }
+
 
 }

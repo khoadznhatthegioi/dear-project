@@ -14,7 +14,11 @@ public class WorldPositionButton : MonoBehaviour
     private Transform targetTransform;
     private RectTransform rectTransform;
     private Image image;
+    [SerializeField] bool doOnce;
     [SerializeField] private Image imagePanel;
+    [SerializeField] SetFloatingIconTrue checkFarAway;
+    public bool isPlaying;
+    public bool initialPlaying;
 
 
     private void Awake()
@@ -35,10 +39,10 @@ public class WorldPositionButton : MonoBehaviour
             
             //else if (targetTransform)
             //{
-                if (targetTransform.gameObject.activeInHierarchy == false)
-                {
-                    gameObject.SetActive(false);
-                }
+            if (targetTransform.gameObject.activeInHierarchy == false )
+            {
+                gameObject.SetActive(false);
+            }
             //}
             var screenPoint = Camera.main.WorldToScreenPoint(targetTransform.position);
             //screenPoint.y += 1;
@@ -48,13 +52,48 @@ public class WorldPositionButton : MonoBehaviour
             var distanceFromCenter = Vector2.Distance(viewportPoint, Vector2.one * 0.5f);
 
             var show = distanceFromCenter < 0.3f;
-            if (screenPoint.z < 0.0f) show = false;
-            if(!pauseMenu.isPauseMenuAlreadyOn && !documentsList.isListAlreadyOn && !inventoryDisappear.isInventoryAlreadyOn && !ExamineSystem.ExamineRaycast.isExamining)
+            if (screenPoint.z < 0.0f)
             {
-                image.enabled = show;
+                image.enabled = false;
+                show = false;
+            }
+
+            if(!PauseMenuu.isPauseMenuAlreadyOn && !DocumentsListDisappear.isListAlreadyOn && !InventoryDisappear.isInventoryAlreadyOn && !ExamineSystem.ExamineRaycast.isExamining)
+            {
+                if (show)
+                {
+                    image.enabled = show;
+                }
+                if (!show && checkFarAway.checkFaraway == false)
+                {
+                    GetComponent<Animator>().Play("InitialExpandReverse");
+                }
+                if (checkFarAway.checkFaraway)
+                {
+                    //GetComponent<Animator>().enabled = false;
+                    //GetComponent<Animator>().en;
+
+                    GetComponent<Animator>().Play("InitialExpandReverse1");
+                    //isPlaying = true;
+                }
+                
+
+                if (!show || checkFarAway.checkFarAway)
+                {
+                    doOnce = false;
+                    //GetComponent<Animator>().Play("InitialExpandReverse
+                }
+                if (show && doOnce == false && isPlaying == false) 
+                {
+                    GetComponent<Animator>().Play("InitialExpand");
+                    //Debug.Log("asd");
+                    doOnce = true;
+                }
+
+               
                 imagePanel.enabled = show;
             }
-            else if(pauseMenu.isPauseMenuAlreadyOn || documentsList.isListAlreadyOn || inventoryDisappear.isInventoryAlreadyOn || ExamineSystem.ExamineRaycast.isExamining)
+            else if(PauseMenuu.isPauseMenuAlreadyOn || DocumentsListDisappear.isListAlreadyOn || InventoryDisappear.isInventoryAlreadyOn || ExamineSystem.ExamineRaycast.isExamining)
             {
                 image.enabled = false;
                 imagePanel.enabled = false;

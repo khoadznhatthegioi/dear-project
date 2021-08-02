@@ -64,7 +64,7 @@ namespace ExamineSystem
                         panelFloating = GameObject.Find(namePanelFloatingIcons);
                         if (panelFloating)
                         {
-                            panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                            //panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
                             panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                         }
                         if (floatingIcon)
@@ -126,7 +126,7 @@ namespace ExamineSystem
                 //uiHandLookAt.SetActive(false);
                 if (panelFloating)
                 {
-                    panelFloating.GetComponent<Animator>().Play("FloatingPanelExit");
+                    //panelFloating.GetComponent<Animator>().Play("FloatingPanelExit");
                     panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(58, 58);
                 }
 

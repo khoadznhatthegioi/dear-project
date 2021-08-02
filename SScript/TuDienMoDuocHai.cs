@@ -6,7 +6,7 @@ using ExamineSystem;
 
     public class TuDienMoDuocHai : MonoBehaviour
     {
-        public ZoomInTriggerRaycast theRaycast;
+        public ZoomInTriggerRaycastUnused theRaycast;
 
         private void OnTriggerStay(Collider other)
         {

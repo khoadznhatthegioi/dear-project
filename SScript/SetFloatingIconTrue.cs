@@ -6,6 +6,9 @@ public class SetFloatingIconTrue : MonoBehaviour
 {
     [Header("FloatingIcons")]
     public GameObject icon;
+    public bool checkFarAway;
+    public bool checkFaraway;
+    public bool checkInside;
 
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
@@ -14,7 +17,10 @@ public class SetFloatingIconTrue : MonoBehaviour
         {
             //if(gameObject.name == "tudien=true (1)")
             //{
-                icon.SetActive(true);
+            checkFaraway = false;
+            checkInside = true;
+            if(icon)
+            icon.SetActive(true);
             //}
         }
 
@@ -26,7 +32,19 @@ public class SetFloatingIconTrue : MonoBehaviour
         {
             //if (gameObject.name == "tudien=true (1)")
             //{
-                icon.SetActive(false);
+            checkFarAway = true;
+            checkFaraway = true;
+
+            //icon.SetActive(false);
+            if (icon)
+            {
+                if (icon.GetComponent<WorldPositionButtonSmallObjects>())
+                {
+                    icon.SetActive(false);
+                }
+            }
+           
+                
             //}
         }
     }

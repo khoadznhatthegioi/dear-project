@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityStandardAssets.Characters.FirstPerson;
 using ExamineSystem;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class BasicDoorRaycast : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class BasicDoorRaycast : MonoBehaviour
     [SerializeField] private LayerMask layerMaskInteract;
     [SerializeField] private string exludeLayerName = null;
     [SerializeField] GameObject nha;
-    [SerializeField] FirstPersonController player;
+    [SerializeField] public FirstPersonController player;
     [SerializeField] GameObject ban;
     //[SerializeField] GameObject chan;
     [SerializeField] GameObject panel;
@@ -41,7 +42,7 @@ public class BasicDoorRaycast : MonoBehaviour
     [SerializeField] PlayerStats playerStats;
     //public GameObject uiHandLookAt;
 
-    private BasicDoorController raycasted_obj;
+    [SerializeField] private BasicDoorController raycasted_obj;
 
     [Header("Key Codes")]
     [SerializeField] private KeyCode openDoorKey = KeyCode.Mouse0;
@@ -51,7 +52,7 @@ public class BasicDoorRaycast : MonoBehaviour
     [SerializeField] public Sprite crosshairUnclicked;
     [SerializeField] private Sprite crosshairClicked;
     private bool isCrosshairActive;
-    private bool doOnce;
+    public bool doOnce;
 
     //MOVE MVOE MOVEMSADHKLSADKLSJAKLDJSAKLJDLKSAJDKLASJDKLSJDKSJDLKJD
     [Header("Smooth Transition")]
@@ -62,15 +63,13 @@ public class BasicDoorRaycast : MonoBehaviour
     [SerializeField] float endRotationCamera;
 
     [SerializeField] float duration;
-    float startTime;
-    [HideInInspector] public bool isRotatingLeftwise;
-    [HideInInspector] public bool isRotatingRightwise;
-    [HideInInspector] public bool isRotatingUpward;
-    [HideInInspector] public bool isRotatingDownward;
+    float startTime; 
     float startX;
     float startY;
     float startZ;
     public float[] targetPosition;
+    float mouseX;
+    float mouseY;
     //KASKLDJLASJDKLSAJDLKASJDKLJASKLDJSKLDJSKALJDKLSJDKLSJDKLSJDKALSJDK
 
     private const string interactableTag = "InteractiveObject";
@@ -100,7 +99,7 @@ public class BasicDoorRaycast : MonoBehaviour
                     panelFloating = GameObject.Find(namePanelFloatingIcons);
                     if (panelFloating)
                     {
-                        panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                       // panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
                         panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                     }
                     if (floatingIcon)
@@ -140,7 +139,7 @@ public class BasicDoorRaycast : MonoBehaviour
                     panelFloating = GameObject.Find(namePanelFloatingIcons);
                     if (panelFloating)
                     {
-                        panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                        //panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
                         panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                     }
                     if (floatingIcon)
@@ -321,7 +320,7 @@ public class BasicDoorRaycast : MonoBehaviour
                     //panelFloating = GameObject.Find(namePanelFloatingIcons);
                     if (panelFloating)
                     {
-                        panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                        //panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
                         panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                     }
                     if (floatingIcon)
@@ -390,9 +389,20 @@ public class BasicDoorRaycast : MonoBehaviour
                     if (floatingIcon)
                         floatingIcon.SetActive(false);
                     player.enabled = false;
+                    raycasted_obj.gameObject.layer= 0;
+                    raycasted_obj.GetComponent<BoxCollider>().enabled = false;
+                    //if (endRotationPlayer > 180)
+                    //{
+                    //    endRotationPlayer -= 360;
+                    //}
+                    //if(endRotationCamera > 180) {
+                    //    endRotationCamera -= 360;
+                    //}
                     startRotationPlayer = player.gameObject.transform.eulerAngles.y;
                     startRotationCamera = gameObject.transform.eulerAngles.x;
                     startTime = Time.time;
+                    mouseX = CrossPlatformInputManager.GetAxis("Mouse X");
+                    mouseY = CrossPlatformInputManager.GetAxis("Mouse Y");
                     startX = player.transform.position.x;
                     startY = player.transform.position.y;
                     startZ = player.transform.position.z;
@@ -436,20 +446,41 @@ public class BasicDoorRaycast : MonoBehaviour
             //var t = new Vector3(0, endPoint, 
             //var x = endPoint-player.transform.eulerAngles.y;
             float t = (Time.time - startTime) / duration;
-            playerStats.RotatePlayer(startRotationPlayer, endRotationPlayer, duration, player.gameObject,startRotationCamera, endRotationCamera, gameObject, startTime);
+            playerStats.RotatePlayer(startRotationPlayer, endRotationPlayer, duration, player.gameObject,startRotationCamera, endRotationCamera, gameObject, startTime, this);
             player.transform.position = new Vector3(Mathf.SmoothStep(startX, targetPosition[0], t), Mathf.SmoothStep(startY, targetPosition[1], t), Mathf.SmoothStep(startZ, targetPosition[2], t));
             //playerStats.RotateCamera(startRotationCamera, endRotationCamera, duration, gameObject, startTime);
-
+            bool sst = false;
             StartCoroutine(wait());
             IEnumerator wait()
             {
                 yield return new WaitForSeconds(duration);
+                //Debug.Log("Fuck");
+                raycasted_obj.gameObject.layer= 9;
+                //raycasted_obj.GetComponent<BoxCollider>().enabled = true;
+                //player.GetComponent<Animator>().enabled = true;
+                //if (!sst)
+                //{
+                //    player.GetComponent<Animator>().Play("xuyen cua",-1);
+                //    sst = true;
+                //}
+                //yield return new WaitForSeconds(1.5f);
+                //player.GetComponent<Animator>().enabled = false;
                 player.m_MouseLook.Init(player.transform, transform);
                 player.enabled = true;
+                 
                 doOnceTwo = false;
+                 
+
+                //player.m_MouseLook.yRot = mouseX;
+                //player.m_MouseLook.xRot = mouseY;
+                //player.enabled = true;
+                //player.m_MouseLook.Init(player.transform, transform);
+                //doOnceTwo = false;
             }
             
         }
+        //Debug.Log(CrossPlatformInputManager.GetAxis("Mouse X") + ", " + CrossPlatformInputManager.GetAxis("Mouse Y"));
+        
     }
 
     void CrosshairChange(bool on)
@@ -465,7 +496,7 @@ public class BasicDoorRaycast : MonoBehaviour
             //Debug.Log("ÁDSAD");
             if (panelFloating)
             {
-                panelFloating.GetComponent<Animator>().Play("FloatingPanelExit");
+                //panelFloating.GetComponent<Animator>().Play("FloatingPanelExit");
                 panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(58, 58);
             }
 

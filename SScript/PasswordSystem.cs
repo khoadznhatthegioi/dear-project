@@ -157,7 +157,7 @@ public class PasswordSystem : MonoBehaviour
             Time.timeScale = 1f;
             inventoryDisappear.blurOut.SetActive(false);
             (inventoryDisappear.mainCam.GetComponent(inventoryDisappear.examineRay) as MonoBehaviour).enabled = true;
-            inventoryDisappear.isInventoryAlreadyOn = false;
+            InventoryDisappear.isInventoryAlreadyOn = false;
             PlayerData.nhinViolinStand = false;
             inventoryDisappear.violinUi.SetActive(false);
             inventoryDisappear.violinBdCollider.enabled = false;

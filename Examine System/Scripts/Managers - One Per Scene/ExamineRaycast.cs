@@ -8,6 +8,7 @@ namespace ExamineSystem
 {
     public class ExamineRaycast : MonoBehaviour
     {
+        public bool doOnce;
         //[Header("PanelFloating")]
         //public GameObject panelFloating;
         //public GameObject panelFloatingChaiBia;
@@ -98,7 +99,7 @@ namespace ExamineSystem
                         panelFloating = GameObject.Find(namePanelFloatingIcons);
                         if (panelFloating)
                         {
-                            panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                            //panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
                             panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                         }
                         if (floatingIcon)
@@ -135,8 +136,8 @@ namespace ExamineSystem
 
                     if (Input.GetKeyUp(KeyCode.Mouse0))
                     {
-                        if (panelFloating)
-                            panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
+                        //if (panelFloating)
+                        //    panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
                         ////raycastedObj.GetComponent<Outlinable>().enabled = false;
                         //if (raycastedObj.GetComponent<ExamineItemController>().isFlashlight == true)
                         //{
@@ -210,7 +211,7 @@ namespace ExamineSystem
                         panelFloating = GameObject.Find(namePanelFloatingIcons);
                         if (panelFloating)
                         {
-                            panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                            //panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
                             panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                         }
                         if (floatingIcon)
@@ -230,8 +231,8 @@ namespace ExamineSystem
 
                     if (Input.GetKeyUp(ExamineInputManager.instance.interactKey))
                     {
-                        if (panelFloating)
-                            panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
+                        //if (panelFloating)
+                        //    panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
                         raycastedObj.ExamineObject();
                         if (panelFloating)
                             panelFloating.SetActive(false);
@@ -259,7 +260,7 @@ namespace ExamineSystem
                         panelFloating = GameObject.Find(namePanelFloatingIcons);
                         if (panelFloating)
                         {
-                            panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
+                            //panelFloating.GetComponent<Animator>().Play("FloatingPanelEnter");
                             panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                         }
                         if (floatingIcon)
@@ -279,8 +280,8 @@ namespace ExamineSystem
 
                     if (Input.GetKeyUp(ExamineInputManager.instance.interactKey))
                     {
-                        if (panelFloating)
-                            panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
+                        //if (panelFloating)
+                        //    panelFloating.GetComponent<Animator>().Play("FloatingPanelReverse");
                         isExamining = true;
                         raycastedObj.ExamineObject();
                         if (panelFloating)
@@ -325,12 +326,17 @@ namespace ExamineSystem
                 //uiHandLookAt.SetActive(false);
                 if (panelFloating)
                 {
-                    panelFloating.GetComponent<Animator>().Play("FloatingPanelExit");
+                    //panelFloating.GetComponent<Animator>().Play("FloatingPanelExit");
                     panelFloating.GetComponent<RectTransform>().sizeDelta = new Vector2(58, 58);
                 }
 
                 if (floatingIcon)
+                {
                     floatingIcon.GetComponent<Animator>().Play("ExpandFloatingReverse");
+                    //floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(50,50);
+                }
+                   
+                //floatingIcon.GetComponent<RectTransform>().sizeDelta = new Vector2(58, 58);
                 uiCrosshair.sprite = uiCrosshairUnclicked;
                 isCrosshairActive = false;
                 //raycastedObj.GetComponent<Outlinable>().enabled = false;
