@@ -1,0 +1,31 @@
+# Blender MTL File: 'FlashLight.blend'
+# Material Count: 2
+
+newmtl FlashLight
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnityAssets\\PROPS_2020\\FlashLight_01\\SP\\release\\unity\\flashlight_01_n.tif
+map_Kd D:\\UnityAssets\\PROPS_2020\\FlashLight_01\\SP\\release\\unity\\flashlight_01_bc.tif
+map_Ns D:\\UnityAssets\\PROPS_2020\\FlashLight_01\\SP\\release\\single\\flashlight_01_r.tif
+refl D:\\UnityAssets\\PROPS_2020\\FlashLight_01\\SP\\release\\single\\flashlight_01_m.tif
+
+newmtl Gloss
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnityAssets\\PROPS_2020\\FlashLight_01\\SP\\release\\unity\\flashlight_01_n.tif
+map_Kd D:\\UnityAssets\\PROPS_2020\\FlashLight_01\\SP\\release\\unity\\flashlight_01_bc.tif
+map_Ns D:\\UnityAssets\\PROPS_2020\\FlashLight_01\\SP\\release\\single\\flashlight_01_r.tif
+map_d D:\\UnityAssets\\PROPS_2020\\FlashLight_01\\SP\\release\\unity\\flashlight_01_bc.tif
+refl D:\\UnityAssets\\PROPS_2020\\FlashLight_01\\SP\\release\\single\\flashlight_01_m.tif

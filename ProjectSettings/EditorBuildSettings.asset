@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/gamescene/Imaginary.unity
+    guid: c6afb9c046f5f6441a7895ddeca12223
+  - enabled: 1
+    path: "Assets/gamescene/testsc\xEAn/testzoo.unity"
+    guid: cdaa187ae30eed140bc6cbc91f15aacf
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: "Assets/gamescene/testsc\xEAn/klkllklkllkjklkljkljkl.unity"
+    guid: 6258f1cf698c08e48b92e694a7c467ef
+  - enabled: 1
+    path: "Assets/gamescene/testsc\xEAn/hjkhu.unity"
+    guid: 436a86b722172e34e9d47cd161d8d449
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: cbfe36cfddfde964d9dfce63a355d5dd
+  - enabled: 1
+    path: Assets/gamescene/mainmenu.unity
+    guid: 89f8bf81b2c909f43a3371043f303632
+  - enabled: 1
+    path: Assets/gamescene/level1.unity
+    guid: 1197dafe45771f84a8448bf7fb2bd25a
+  - enabled: 1
+    path: Assets/gamescene/level3.unity
+    guid: fd992698e9876754fbe00b0b34f8807d
+  - enabled: 1
+    path: Assets/gamescene/Zoo.unity
+    guid: 400fd13918de09e418290e1f3fc533e4
+  - enabled: 1
+    path: Assets/gamescene/level5.unity
+    guid: e17b219f0cf6f56448d770875255ceaf
+  - enabled: 1
+    path: Assets/gamescene/level4.unity
+    guid: 83cb9e98e94e2e34aaf91a64cc8b9caf
+  - enabled: 1
+    path: Assets/gamescene/level0.unity
+    guid: c6079f2172cef0846abad019d9ca27e0
+  m_configObjects: {}
