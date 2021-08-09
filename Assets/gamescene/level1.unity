@@ -10465,13 +10465,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fpsController: {fileID: 284823951}
-  thePlayer: {fileID: 1721558740}
+  thePlayer: {fileID: 0}
   invisibleObject: {fileID: 173747311}
   buttonOnObject: {fileID: 154149684}
   crosshair: {fileID: 685715459}
   bgz: {fileID: 418682551}
   displayInventory: {fileID: 686607555}
-  zoom: {fileID: 1721558740}
+  zoom: {fileID: 0}
   boolean: {fileID: 1828121255}
   click: {fileID: 154149687}
 --- !u!114 &932625755
@@ -23961,53 +23961,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1721558736}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1721558740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721558739}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c02afc147fe82cf44ac4ca3c5aaf8e81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelFloating: {fileID: 844027437}
-  panelFloatingChaiBia: {fileID: 26098615}
-  panelFloatingDiary: {fileID: 592564217}
-  floatingIconTuDien: {fileID: 1971371209}
-  floatingIconChaiBia: {fileID: 999211470}
-  floatingIconDiary: {fileID: 1545569150}
-  rayLength: 3
-  layerMaskInteract:
-    serializedVersion: 2
-    m_Bits: 512
-  exludeLayerName: 
-  fpsController: {fileID: 284823951}
-  buttonOnObject: {fileID: 154149684}
-  bgz: {fileID: 418682551}
-  zoomInRay: 
-  isInteracting: 0
-  displayInventory: {fileID: 686607555}
-  zoomInTuDienCamera: {fileID: 932625749}
-  zoomInChaiBiaCamera: {fileID: 0}
-  zoomInDiaryCamera: {fileID: 0}
-  tuDienLight: {fileID: 818587511}
-  noiDay: {fileID: 154149684}
-  laTuDien: 0
-  laChaiBia: 0
-  laDiary: 0
-  openDoorKey: 323
-  crosshair: {fileID: 685715459}
-  crosshairUnclicked: {fileID: 21300000, guid: 9a324ca8e891e7c4392e4193bd6b400e, type: 3}
-  crosshairClicked: {fileID: 21300000, guid: 8e465c79972277a498b11f81e721bb3b, type: 3}
-  doOnce: 0
-  invisibleObject: {fileID: 173747311}
-  invisibleObject1: {fileID: 858632940}
-  invisibleObject2: {fileID: 712614881}
-  buffing: 0
-  boolean: {fileID: 1828121255}
 --- !u!114 &1721558741 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1840235040300577880, guid: a957311ee8f334f4db68811f264ea071,
@@ -24683,7 +24636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 923c08a164b64cb4391d3957058b955e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theRaycast: {fileID: 1721558740}
+  theRaycast: {fileID: 0}
 --- !u!65 &1783545431
 BoxCollider:
   m_ObjectHideFlags: 0
