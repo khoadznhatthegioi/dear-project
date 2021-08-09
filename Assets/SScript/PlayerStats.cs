@@ -14,6 +14,9 @@ public class PlayerStats : MonoBehaviour
     public GameObject denTv;
     public GameObject video;
     public GameObject fifthSavedObject;
+    public GameObject[] firstSaveObjects;
+    public GameObject[] fifthSaveObjects;
+    //spublic GameObject floatingIconViolin;
     public GameObject labua;
     public GameObject nha;
     public GameObject cua;
@@ -110,8 +113,16 @@ public class PlayerStats : MonoBehaviour
                 IEnumerator wait()
                 {
                     yield return new WaitForSeconds(2f);
-                    if (firstSavedObject)
-                        firstSavedObject.SetActive(false);
+                    if (/*firstSavedObject*/ firstSaveObjects.Length > 0)
+                    {
+                        for (var i = 0; i < firstSaveObjects.Length; i++)
+                            if(firstSaveObjects[i])
+                            firstSaveObjects[i].SetActive(false);
+                    }
+                    //sfloatingIconViolin.GetComponent<Image>().enabled = true;
+                    
+                        //firstSavedObject.SetActive(false);
+                        
                     if (violin)
                         violin.SetActive(true);
                     if (denTv)
@@ -256,8 +267,14 @@ public class PlayerStats : MonoBehaviour
 
                 inventoryObject.Save();
                 saveSystem.Save();
-                if (fifthSavedObject)
-                    fifthSavedObject.SetActive(false);
+                //if (fifthSavedObject)
+                //    fifthSavedObject.SetActive(false);
+
+                if (/*firstSavedObject*/ fifthSaveObjects.Length > 0)
+                {
+                    for (var i = 0; i < fifthSaveObjects.Length; i++)
+                        fifthSaveObjects[i].SetActive(false);
+                }
                 if (DisplayInventory.sceneLoaded3 == false && check14 == false)
                 {
 

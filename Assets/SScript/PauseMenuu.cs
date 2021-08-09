@@ -134,7 +134,7 @@ public class PauseMenuu : MonoBehaviour
     }
     public void Resume()
     {
-        if (!PlayerData.moTuDien)
+        if (!PlayerData.moTuDien && !PlayerData.nhinDiary )
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -173,7 +173,7 @@ public class PauseMenuu : MonoBehaviour
             //    Cursor.visible = true;
             //}
         }
-        else if (PlayerData.moTuDien)
+        else if (PlayerData.moTuDien || PlayerData.nhinDiary)
         {
             pauseMenu.SetActive(false);
            
@@ -206,6 +206,7 @@ public class PauseMenuu : MonoBehaviour
 
     public void Quit()
     {
+        isPauseMenuAlreadyOn = false;
         SceneManager.LoadScene("mainmenu");
         //PlayerData.firstSaved = false;
         //PlayerData.secondSaved = false;

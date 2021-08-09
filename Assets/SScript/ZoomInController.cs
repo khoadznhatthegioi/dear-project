@@ -48,7 +48,7 @@ public class ZoomInController : MonoBehaviour
             }
         }
 
-        if (PlayerData.moTuDien && !DocumentsListDisappear.isListAlreadyOn && !PauseMenuu.isPauseMenuAlreadyOn && !InventoryDisappear.isInventoryAlreadyOn && !ray.doOnceTwo && !doOnceTwo && !DisplayInventory.isFixing)
+        if ((PlayerData.moTuDien || PlayerData.nhinDiary) && !DocumentsListDisappear.isListAlreadyOn && !PauseMenuu.isPauseMenuAlreadyOn && !InventoryDisappear.isInventoryAlreadyOn && !ray.doOnceTwo && !doOnceTwo && !DisplayInventory.isFixing)
         {
             if (Input.GetKeyUp(KeyCode.Mouse1))
             {
@@ -57,7 +57,9 @@ public class ZoomInController : MonoBehaviour
                 //startZ = player.transform.position.z;
                 //player.GetComponent<FirstPersonController>().enabled = false;
                 if(ray.panelFloating)
-                ray.panelFloating.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+                    ray.panelFloating.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+                if (ray.panelFloatingDiary)
+                    ray.panelFloatingDiary.GetComponent<Image>().color = new Color(255, 255, 255, 0);
                 if(click)
                     click.gameObject.GetComponent<Outlinable>().enabled = false;
                 startTime = Time.time;
@@ -98,6 +100,7 @@ public class ZoomInController : MonoBehaviour
                 Cursor.visible = false;
                 ray.crosshair.enabled = true;
                 PlayerData.moTuDien = false;
+                PlayerData.nhinDiary = false;
                 ray.enabled = true;
                 doOnceThree = true;
                 doOnceTwo = false;

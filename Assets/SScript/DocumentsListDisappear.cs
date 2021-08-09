@@ -144,7 +144,7 @@ namespace ExamineSystem
 
         public void TurnOffList()
         {
-            if (!PlayerData.moTuDien)
+            if (!PlayerData.moTuDien && !PlayerData.nhinDiary)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -177,7 +177,7 @@ namespace ExamineSystem
                 (mainCam.GetComponent(doorRay) as MonoBehaviour).enabled = true;
                 isListAlreadyOn = false;
             }
-            else if (PlayerData.moTuDien)
+            else if (PlayerData.moTuDien || PlayerData.nhinDiary)
             {
                 documentsList.SetActive(false);
                 

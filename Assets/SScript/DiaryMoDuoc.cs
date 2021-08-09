@@ -6,7 +6,7 @@ using ExamineSystem;
     
         public class DiaryMoDuoc : MonoBehaviour
         {
-            public ZoomInTriggerRaycastUnused theRaycast;
+            public ZoomInTriggerRaycast theRaycast;
 
             private void OnTriggerStay(Collider other)
             {

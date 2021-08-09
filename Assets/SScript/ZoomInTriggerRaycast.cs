@@ -66,13 +66,19 @@ public class ZoomInTriggerRaycast: MonoBehaviour
     public float endRotationPlayer;
     public float startRotationCamera;
     public float endRotationCamera;
+    [SerializeField] float endRotationPlayerTuDien;
+    [SerializeField] float endRotationCameraTuDien;
+    [SerializeField] float endRotationPlayerDiary;
+    [SerializeField] float endRotationCameraDiary;
 
     [SerializeField] public  float duration;
     public float startTime; 
     public float startX;
     public float startY;
     public float startZ;
-    public float[] targetPosition;
+    /*[HideInInspector] */public float[] targetPosition;
+    [SerializeField] float[] targetPositionTuDien;
+    [SerializeField] float[] targetPostitionDiary;
     float mouseX;
     float mouseY;
 
@@ -120,6 +126,9 @@ public class ZoomInTriggerRaycast: MonoBehaviour
                         }
                         if (Input.GetKeyUp(openDoorKey))
                         {
+                            targetPosition = targetPositionTuDien;
+                            endRotationPlayer = endRotationPlayerTuDien;
+                            endRotationCamera = endRotationCameraTuDien;
                             floatingIconTuDien.SetActive(false);
 
                             player.enabled = false;
@@ -214,16 +223,17 @@ public class ZoomInTriggerRaycast: MonoBehaviour
                 {
                     if (!doOnce)
                     {
-                       // raycasted_obj = hit.collider.gameObject.GetComponent<BasicDoorController>();
-                        panelFloatingDiary.GetComponent<Animator>().Play("FloatingPanelEnter");
+                        raycasted_obj = hit.collider.gameObject.GetComponent<ZoomInController>();
+
                         panelFloatingDiary.GetComponent<RectTransform>().sizeDelta = new Vector2(86, 86);
                         floatingIconDiary.GetComponent<Animator>().Play("ExpandFloating");
+
                         CrosshairChange(true);
                     }
 
                     isCrosshairActive = true;
                     doOnce = true;
-                    if (!isInteracting)
+                    if (!isInteracting && !raycasted_obj.doOnceThree)
                     {
                         if (Input.GetKeyDown(openDoorKey))
                         {
@@ -231,42 +241,32 @@ public class ZoomInTriggerRaycast: MonoBehaviour
                             panelFloatingDiary.GetComponent<Animator>().Play("FloatingPanel");
 
                         }
-
                         if (Input.GetKeyUp(openDoorKey))
                         {
-                            panelFloatingDiary.GetComponent<Animator>().Play("FloatingPanelReverse");
-                            if (boolean.waitForAnimationEnd == false)
-                            {
-                                bgz.SetActive(true);
-                                zoomInDiaryCamera.SetActive(true);
-                                buffing = true;
-                                StartCoroutine(waiter());
+                            targetPosition = targetPostitionDiary;
+                            endRotationPlayer = endRotationPlayerDiary;
+                            endRotationCamera = endRotationCameraDiary;
+                            floatingIconDiary.SetActive(false);
 
-
-                                IEnumerator waiter()
-                                {
-                                    yield return new WaitForSeconds(0.5f);
-                                    //SceneManager.LoadScene("testObject");
-                                    Cursor.lockState = CursorLockMode.None;
-                                    Cursor.visible = true;
-                                    crosshair.enabled = false;
-                                    floatingIconDiary.SetActive(false);
-                                    //(fpsCam.GetComponent(zoomInRay) as MonoBehaviour).enabled = false;
-                                    fpsController.SetActive(false);
-                                    isInteracting = true;
-                                    if (invisibleObject2)
-                                        invisibleObject2.SetActive(false);
-                                    //buttonOnObject.SetActive(true);
-                                    PlayerData.nhinDiary = true;
-                                    Debug.Log("addudududu");
-                                    //yield return StartCoroutine(waiter1());
-                                    //IEnumerator waiter1()
-                                    //{
-                                    //yield return new WaitForSeconds(0.5f);
-                                    buffing = false;
-                                    //}
-                                }
-                            }
+                            player.enabled = false;
+                            //raycasted_obj.gameObject.layer = 0;
+                            // //raycasted_obj.GetComponent<BoxCollider>().enabled = false;
+                            startRotationPlayer = player.gameObject.transform.eulerAngles.y;
+                            startRotationCamera = gameObject.transform.eulerAngles.x;
+                            startTime = Time.time;
+                            //mouseX = CrossPlatformInputManager.GetAxis("Mouse X");
+                            //mouseY = CrossPlatformInputManager.GetAxis("Mouse Y");
+                            startX = player.transform.position.x;
+                            startY = player.transform.position.y;
+                            startZ = player.transform.position.z;
+                            noiDay.SetActive(true);
+                            Cursor.lockState = CursorLockMode.None;
+                            Cursor.visible = true;
+                            crosshair.enabled = false;
+                            //this.enabled = false;
+                            PlayerData.nhinDiary = true;
+                            doOnceTwo = true;
+                            enabled = false;
 
                         }
                     }

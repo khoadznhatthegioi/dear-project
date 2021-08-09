@@ -162,7 +162,7 @@ namespace ExamineSystem
 
         public void TurnOffInventory()
         {
-            if (!PlayerData.moTuDien)
+            if (!PlayerData.moTuDien && !PlayerData.nhinDiary)
             {
                 var position = rectTransform.position;
                 position.x = 6666;
@@ -196,7 +196,7 @@ namespace ExamineSystem
                 PlayerData.nhinBoNhang = false;
                 PlayerData.nhinChaiBia = false;
             }
-            else if (PlayerData.moTuDien)
+            else if (PlayerData.moTuDien || PlayerData.nhinDiary)
             {
                 var position = rectTransform.position;
                 position.x = 6666;
