@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4723629815627469421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4723629815627469423}
+  - component: {fileID: 4723629815627469420}
+  - component: {fileID: 4723629815627469422}
+  m_Layer: 0
+  m_Name: EVENT (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4723629815627469423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723629815627469421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 240.72113, y: 509.37552, z: -57.62848}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4723629815627469420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723629815627469421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1550ac053ef95bc47a60f01b80bb1890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgi: {fileID: 0}
+  mainCam: {fileID: 0}
+  documentsList: {fileID: 0}
+  examineRay: ExamineRaycast
+  putOnRay: PutOnRaycast
+  doorRay: BasicDoorRaycast
+  blurOut: {fileID: 0}
+  crosshair: {fileID: 0}
+  player: {fileID: 0}
+  isListAlreadyOn: 0
+  displayInventory: {fileID: 0}
+  inventoryDisappear: {fileID: 0}
+  violinUi: {fileID: 0}
+  violinBdCollider: {fileID: 0}
+  video: {fileID: 0}
+  documentsUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  imageSaving: {fileID: 0}
+  pauseMenu: {fileID: 4723629815627469422}
+  giongNoiChuyen:
+  - {fileID: 0}
+  - {fileID: 0}
+  alreadyPlayed: 0000
+  subPlayer: {fileID: 0}
+  subCam: {fileID: 0}
+--- !u!114 &4723629815627469422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4723629815627469421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe9be40c3d43ab44815beb475245abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  bgi: {fileID: 0}
+  mainCam: {fileID: 0}
+  examineRay: ExamineRaycast
+  putOnRay: PutOnRaycast
+  doorRaycast: BasicDoorRaycast
+  blurOut: {fileID: 0}
+  crosshair: {fileID: 0}
+  player: {fileID: 0}
+  isPauseMenuAlreadyOn: 0
+  displayInventory: {fileID: 0}
+  inventoryDisappear: {fileID: 0}
+  violinUi: {fileID: 0}
+  violinBdCollider: {fileID: 0}
+  video: {fileID: 0}
+  documentsUI: []
+  imageSaving: {fileID: 0}
+  documentsList: {fileID: 4723629815627469420}
+  subPlayer: {fileID: 0}
+  subCam: {fileID: 0}
+  lolUSure: {fileID: 0}
+  lolUSuring: 0

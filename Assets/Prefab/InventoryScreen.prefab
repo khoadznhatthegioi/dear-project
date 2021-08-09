@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1081434083676879504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1081434083676879517}
+  - component: {fileID: 1081434083676879516}
+  - component: {fileID: 1081434083676879507}
+  - component: {fileID: 1081434083676879506}
+  - component: {fileID: 1081434083676879505}
+  m_Layer: 5
+  m_Name: InventoryScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1081434083676879517
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081434083676879504}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 4.0251575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 6666, y: -540}
+  m_SizeDelta: {x: 1921.3, y: 1079.2}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!222 &1081434083676879516
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081434083676879504}
+  m_CullTransparentMesh: 1
+--- !u!114 &1081434083676879507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081434083676879504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1081434083676879506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081434083676879504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab47ae2a6602f704b9bdf0073f40bcb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  documentsList: {fileID: 0}
+  boolTestRemove: {fileID: 0}
+  saveSystem: {fileID: 0}
+  triggerQuaiVat: {fileID: 0}
+  playerStats: {fileID: 0}
+  tudienCollider: {fileID: 0}
+  chaiBiaCollider: {fileID: 0}
+  violinStandCollider: {fileID: 0}
+  boNhangCollider: {fileID: 0}
+  diary: {fileID: 0}
+  inventoryPrefab: {fileID: 3631300154163305369, guid: 2369b2ebef37eb34b83fb49c3c43e4a0,
+    type: 3}
+  volumeNoiChuyen: {fileID: 0}
+  denTvBat: {fileID: 0}
+  cuocNoiChuyen: {fileID: 0}
+  danViolin: {fileID: 0}
+  video: {fileID: 0}
+  violinBieuDien: {fileID: 0}
+  boNhang: {fileID: 0}
+  laBua: {fileID: 0}
+  zoom: {fileID: 0}
+  caiInventory: {fileID: 1081434083676879504}
+  inventory: {fileID: 11400000, guid: dbbb908250c28924fa15e20d2ae5cc77, type: 2}
+  X_START: 462
+  Y_START: -375
+  X_SPACE_BETWEEN_ITEMS: 200
+  NUMBER_OF_COLUMNS: 6
+  Y_SPACE_BETWEEN_ITEMS: 455
+  sth: {fileID: 1081434083676879505}
+  rectTransform: {fileID: 1081434083676879517}
+  chaiBiaCamera: {fileID: 0}
+  player: {fileID: 0}
+  examineRaycast: {fileID: 0}
+  crayonSprite: {fileID: 21300000, guid: 0eed3f8ee8f6c9c489fbf70b39242615, type: 3}
+  tuaVitSprite: {fileID: 21300000, guid: b2fefd1582c8fc8458a07d7c20334ba5, type: 3}
+  doKhuiSprite: {fileID: 21300000, guid: 47deae58ad19e0e479c7cf12244efc4f, type: 3}
+  violinSprite: {fileID: 21300000, guid: c92a77d53a6061d4cb0e1c2d04af3d2f, type: 3}
+  boNhangSprite: {fileID: 21300000, guid: 4d98e7c8b7679f34a94570e87b67cda7, type: 3}
+  batLuaSprite: {fileID: 21300000, guid: 0900760575207be4aa1a0b727bcb69ad, type: 3}
+  laBuaSprite: {fileID: 0}
+  gateKeySprite: {fileID: 21300000, guid: 62a6c84f6aa0328468574b977dc560c2, type: 3}
+  uiInventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &1081434083676879505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081434083676879504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e738aabdf89504caea1e2acd843a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgi: {fileID: 0}
+  mainCam: {fileID: 0}
+  examineRay: ExamineRaycast
+  putOnRay: PutOnRaycast
+  doorRay: BasicDoorRaycast
+  rectTransform: {fileID: 0}
+  blurOut: {fileID: 0}
+  crosshair: {fileID: 0}
+  player: {fileID: 0}
+  isInventoryAlreadyOn: 0
+  displayInventory: {fileID: 1081434083676879506}
+  violinUi: {fileID: 0}
+  violinBdCollider: {fileID: 0}
+  video: {fileID: 0}
+  documentsList: {fileID: 0}
+  imageSaving: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  subPlayer: {fileID: 0}
+  subCam: {fileID: 0}
