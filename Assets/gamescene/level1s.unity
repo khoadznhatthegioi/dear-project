@@ -251,7 +251,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 1267488308}
+  i: 0
 --- !u!1 &6338456 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 47fca79de09a336479dbb5bfbfd0a129,
@@ -1568,7 +1572,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 695550914}
+  i: 0
 --- !u!1001 &123589080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2506,7 +2514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 976763284}
+  i: 0
 --- !u!1 &230565498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,6 +3160,8 @@ MonoBehaviour:
   denTv: {fileID: 797973231}
   video: {fileID: 605524982}
   fifthSavedObject: {fileID: 0}
+  firstSaveObjects: []
+  fifthSaveObjects: []
   labua: {fileID: 0}
   nha: {fileID: 0}
   cua: {fileID: 0}
@@ -4693,7 +4707,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 1979495904}
+  i: 0
 --- !u!1001 &425457943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5110,7 +5128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa81c43bd78f2104ba0b5858bf5162c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theRaycast: {fileID: 1721558740}
+  theRaycast: {fileID: 0}
 --- !u!65 &471932973
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5168,7 +5186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc49bdbf344cbc4478ae6c176fe222c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theRaycast: {fileID: 1721558740}
+  theRaycast: {fileID: 0}
 --- !u!65 &476887302
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8193,7 +8211,7 @@ MonoBehaviour:
   violinBieuDien: {fileID: 6338456}
   boNhang: {fileID: 0}
   laBua: {fileID: 0}
-  zoom: {fileID: 1721558740}
+  zoom: {fileID: 0}
   caiInventory: {fileID: 686607552}
   inventory: {fileID: 11400000, guid: dbbb908250c28924fa15e20d2ae5cc77, type: 2}
   X_START: 462
@@ -9228,7 +9246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 1087781714}
+  i: 0
 --- !u!1 &725921658
 GameObject:
   m_ObjectHideFlags: 0
@@ -12588,7 +12610,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 320283569}
+  i: 0
 --- !u!1 &999714762
 GameObject:
   m_ObjectHideFlags: 19
@@ -16767,7 +16793,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 2047381790}
+  i: 0
 --- !u!1 &1371262724
 GameObject:
   m_ObjectHideFlags: 0
@@ -22777,7 +22807,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 2085236123}
+  i: 0
 --- !u!1 &1561714648
 GameObject:
   m_ObjectHideFlags: 0
@@ -24299,7 +24333,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 46100113}
+  i: 0
 --- !u!1 &1686630660
 GameObject:
   m_ObjectHideFlags: 0
@@ -24861,7 +24899,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 640971638}
+  i: 0
 --- !u!1001 &1721558736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25319,6 +25361,7 @@ MonoBehaviour:
     type: 3}
   uiCrosshairClicked: {fileID: 21300000, guid: 8e465c79972277a498b11f81e721bb3b, type: 3}
   interacting: 0
+  isCrosshairActive: 0
   inventoryDisappear: {fileID: 686607554}
   rectTransform: {fileID: 686607553}
   alarmSound: {fileID: 0}
@@ -25414,14 +25457,11 @@ MonoBehaviour:
   crosshair: {fileID: 0}
   crosshairUnclicked: {fileID: 21300000, guid: 9a324ca8e891e7c4392e4193bd6b400e, type: 3}
   crosshairClicked: {fileID: 21300000, guid: 8e465c79972277a498b11f81e721bb3b, type: 3}
+  doOnce: 0
   doOnceTwo: 0
   endRotationPlayer: 0
   endRotationCamera: 0
   duration: 0
-  isRotatingLeftwise: 0
-  isRotatingRightwise: 0
-  isRotatingUpward: 0
-  isRotatingDownward: 0
   targetPosition: []
 --- !u!114 &1721558750
 MonoBehaviour:
@@ -27551,7 +27591,7 @@ VideoPlayer:
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8600000, guid: 37e1a9eecc7a5f24e84c2aa17853efc5, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -28087,7 +28127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8bd6bc38c8da84e845dec8c9f6ef93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothRaycast: {fileID: 0}
+  examineRay: {fileID: 0}
+  doorRaycast: {fileID: 0}
   set: {fileID: 1501220292}
+  i: 0
 --- !u!1 &1978788400
 GameObject:
   m_ObjectHideFlags: 0

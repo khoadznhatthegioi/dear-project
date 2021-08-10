@@ -3209,6 +3209,8 @@ MonoBehaviour:
   denTv: {fileID: 797973231}
   video: {fileID: 605524982}
   fifthSavedObject: {fileID: 0}
+  firstSaveObjects: []
+  fifthSaveObjects: []
   labua: {fileID: 0}
   nha: {fileID: 0}
   cua: {fileID: 0}
@@ -25770,8 +25772,14 @@ MonoBehaviour:
   - -5.58
   - 1.1
   - 1.34
-  targetPositionTuDien: []
-  targetPostitionDiary: []
+  targetPositionTuDien:
+  - 0
+  - 0
+  - 0
+  targetPostitionDiary:
+  - 0
+  - 0
+  - 0
 --- !u!1 &1730088041
 GameObject:
   m_ObjectHideFlags: 0

@@ -5639,7 +5639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8600000, guid: 37e1a9eecc7a5f24e84c2aa17853efc5, type: 2}
+  m_Texture: {fileID: 8400000, guid: cecd762714a5cae41843e22daf801da3, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -25519,6 +25519,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExamineCanvasContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 104457953019260458, guid: a0782c58d925fd24b873fe7ab2c6424f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 104457953019260459, guid: a0782c58d925fd24b873fe7ab2c6424f,
         type: 3}
       propertyPath: m_RootOrder
@@ -25747,11 +25752,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930157102}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: a0e1eb6d5d3e7ae4eab482eb5de74d84, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 9e328efe9c04e8e4a931032607c310e1, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8600000, guid: 37e1a9eecc7a5f24e84c2aa17853efc5, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: cecd762714a5cae41843e22daf801da3, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -28024,7 +28029,7 @@ MonoBehaviour:
     camera:
       camera: 0
   m_ProxyVolume: {fileID: 0}
-  m_BakedTexture: {fileID: 8900000, guid: a2c054520f0b7554fae460223508283b, type: 3}
+  m_BakedTexture: {fileID: 8900000, guid: 0c5d9536d81c9b040adf658479b048c8, type: 3}
   m_CustomTexture: {fileID: 0}
   m_BakedRenderData:
     m_WorldToCameraRHS:
