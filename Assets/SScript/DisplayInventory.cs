@@ -310,7 +310,7 @@ namespace ExamineSystem
                                 if (chaiBiaCollider)
                                     Destroy(chaiBiaCollider);
                                 PlayerData.daKhuiChaiBia = true;
-                                chaiBiaCamera.SetActive(false);
+                                //chaiBiaCamera.SetActive(false);
                                 player.SetActive(true);
                                 zoom.isInteracting = false;
                                 //nhinChaiBia = false;
