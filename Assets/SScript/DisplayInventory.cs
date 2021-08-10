@@ -267,8 +267,10 @@ namespace ExamineSystem
                         //sudungrasaoghivaoday(nhuanimation,...)                        
                     }
                 }*/
-                try
-                {
+                //try
+                //{
+
+
                     switch (inventory.database.GetItem[itemsDisplayed[obj].ID].Id)
                     {
                         case 4:
@@ -293,7 +295,7 @@ namespace ExamineSystem
                                     isFixing = false;
                                     PlayerData.daSua = true;
                                 }
-                                
+
                                 //sudungrasaoghivaoday(nhuanimation,...)                        
                             }
                             else
@@ -420,9 +422,12 @@ namespace ExamineSystem
                                 {
                                     (sth.mainCam.GetComponent(sth.violinRaycast) as MonoBehaviour).enabled = true;
                                 }
-                                (sth.mainCam.GetComponent(sth.examineRay) as MonoBehaviour).enabled = true;
-                                (sth.mainCam.GetComponent(sth.putOnRay) as MonoBehaviour).enabled = true;
-                                (sth.mainCam.GetComponent(sth.doorRay) as MonoBehaviour).enabled = true;
+                                //(sth.mainCam.GetComponent(sth.examineRay) as MonoBehaviour).enabled = true;
+                                //(sth.mainCam.GetComponent(sth.putOnRay) as MonoBehaviour).enabled = true;
+                                //(sth.mainCam.GetComponent(sth.doorRay) as MonoBehaviour).enabled = true;
+                                sth.mainCam.GetComponent<ExamineSystem.ExamineRaycast>().enabled = true;
+                                sth.mainCam.GetComponent<PutOnRaycast>().enabled = true;
+                                sth.mainCam.GetComponent<BasicDoorRaycast>().enabled = true;
 
                                 InventoryDisappear.isInventoryAlreadyOn = false;
                                 if (diary)
@@ -505,8 +510,11 @@ namespace ExamineSystem
                             break;
 
                     }
-                }
-                catch { }
+
+                //}
+                //catch { }
+                
+                
                 
 
 
