@@ -72,16 +72,16 @@ namespace ExamineSystem
                             Cursor.visible = true;
                         }
 
-                        try
-                        {
-                            if (mainCam.GetComponent<PutOnRaycast>().raycasted_obj != null || mainCam.GetComponent<PutOnRaycast>().panelFloating)
-                            {
-                                mainCam.GetComponent<PutOnRaycast>().panelFloating.SetActive(true);
-                                mainCam.GetComponent<PutOnRaycast>().panelFloating.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
-                                mainCam.GetComponent<PutOnRaycast>().floatingIcon.SetActive(true);
-                            }
-                        }
-                        catch { }
+                        //try
+                        //{
+                        //    if (mainCam.GetComponent<PutOnRaycast>().raycasted_obj != null || mainCam.GetComponent<PutOnRaycast>().panelFloating)
+                        //    {
+                        //        mainCam.GetComponent<PutOnRaycast>().panelFloating.SetActive(true);
+                        //        mainCam.GetComponent<PutOnRaycast>().panelFloating.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+                        //        mainCam.GetComponent<PutOnRaycast>().floatingIcon.SetActive(true);
+                        //    }
+                        //}
+                        //catch { }
                        
                         ClickingOnObjectTest.i = false;
                     }
@@ -111,12 +111,12 @@ namespace ExamineSystem
                             Cursor.lockState = CursorLockMode.None;
                             Cursor.visible = true;
                         }
-                        if ((mainCam.GetComponent(putOnRay) as PutOnRaycast).raycasted_obj != null)
-                        {
-                            (mainCam.GetComponent(putOnRay) as PutOnRaycast).panelFloating.SetActive(true);
-                            (mainCam.GetComponent(putOnRay) as PutOnRaycast).panelFloating.GetComponent<Image>().color = new Color32(255,255,255,0);
-                            (mainCam.GetComponent(putOnRay) as PutOnRaycast).floatingIcon.SetActive(true);
-                        }
+                        //if ((mainCam.GetComponent(putOnRay) as PutOnRaycast).raycasted_obj != null)
+                        //{
+                        //    (mainCam.GetComponent(putOnRay) as PutOnRaycast).panelFloating.SetActive(true);
+                        //    (mainCam.GetComponent(putOnRay) as PutOnRaycast).panelFloating.GetComponent<Image>().color = new Color32(255,255,255,0);
+                        //    (mainCam.GetComponent(putOnRay) as PutOnRaycast).floatingIcon.SetActive(true);
+                        //}
                         ClickingOnObjectTest.i = false;
                     }
 
