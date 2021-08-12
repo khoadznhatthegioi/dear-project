@@ -1800,7 +1800,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
@@ -23327,12 +23327,7 @@ PrefabInstance:
     - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
         type: 3}
       propertyPath: m_UseHeadBob
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_StepInterval
-      value: 3.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
         type: 3}
@@ -23391,133 +23386,8 @@ PrefabInstance:
       objectReference: {fileID: 936798966}
     - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
         type: 3}
-      propertyPath: m_HeadBob.VerticalBobRange
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.HorizontalBobRange
-      value: 0.026
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_FootstepSounds.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4, type: 3}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_FootstepSounds.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_PreInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
       propertyPath: m_MouseLook.clampVerticalRotation
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[2].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[3].time
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[4].time
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[5].time
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[6].time
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[2].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[3].value
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[4].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[5].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[2].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[3].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[4].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[2].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[3].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[4].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[5].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[6].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[5].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 1840235039729149672, guid: a957311ee8f334f4db68811f264ea071,
-        type: 3}
-      propertyPath: m_HeadBob.Bobcurve.m_Curve.Array.data[6].outWeight
-      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 1840235040300577880, guid: a957311ee8f334f4db68811f264ea071,
         type: 3}
