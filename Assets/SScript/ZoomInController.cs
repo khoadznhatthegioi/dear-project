@@ -64,7 +64,7 @@ public class ZoomInController : MonoBehaviour
                     click.gameObject.GetComponent<Outlinable>().enabled = false;
                 startTime = Time.time;
                 ray.noiDay.SetActive(false);
-                if (PlayerData.daSua)
+                if ((PlayerData.daSua && gameObject.name == "tudien" )|| (PlayerData.daVeTrenDiary && gameObject.name == "DiaryCollider"))
                 {
                     gameObject.layer = 0;
                 }
@@ -88,8 +88,10 @@ public class ZoomInController : MonoBehaviour
                 //raycasted_obj.gameObject.layer = 9;
                 //raycasted_obj.GetComponent<BoxCollider>().enabled = true;
                 player.GetComponent<FirstPersonController>().enabled = true;
+                ray.rhc.enabled = true;
+                ray.rhcb.enabled = true;
                 //ray.enabled = true;
-                if (ray.floatingIconTuDien)
+                if (ray.floatingIconTuDien && PlayerData.moTuDien)
                 {
                     ray.floatingIconTuDien.SetActive(true);
                     ray.floatingIconTuDien.GetComponent<RectTransform>().sizeDelta = new Vector2(75, 75);

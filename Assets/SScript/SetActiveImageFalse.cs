@@ -38,7 +38,7 @@ namespace ExamineSystem
         public void CheckRaycast()
         {
             //Debug.Log("sss");
-            if (smoothRaycast.isCrosshairActive || examineRay.interacting || doorRaycast.doOnce)
+            if (smoothRaycast && (smoothRaycast.isCrosshairActive || examineRay.interacting || doorRaycast.doOnce))
             {
 
                 GetComponent<Animator>().Play("ExpandFloating"); 

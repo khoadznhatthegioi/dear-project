@@ -434,6 +434,7 @@ namespace ExamineSystem
                                     Destroy(diary);
                                 sceneLoaded2 = true;
                                 videoLoaded = true;
+                            PlayerData.daVeTrenDiary = true;
                                 PlayerData.thirdSaved = true;
                                 video.SetActive(true);
 

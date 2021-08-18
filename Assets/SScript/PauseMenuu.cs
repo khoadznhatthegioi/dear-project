@@ -34,6 +34,12 @@ public class PauseMenuu : MonoBehaviour
     public GameObject lolUSure;
     public bool lolUSuring;
 
+    [Header("For Settings")]
+    [SerializeField] RHC_BobController RHC_Bob;
+    [SerializeField] GameObject gameplayOptions;
+    [SerializeField] GameObject settingsCanvas;
+    public bool isHeadbobOn= true;
+
     void Update()
     {
         if (player.gameObject.activeInHierarchy == false)
@@ -139,6 +145,7 @@ public class PauseMenuu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             pauseMenu.SetActive(false);
+            settingsCanvas.SetActive(false);
             for (int i = 0; i < documentsUI.Length; i++)
             {
                 documentsUI[i].SetActive(false);
@@ -180,6 +187,7 @@ public class PauseMenuu : MonoBehaviour
             Time.timeScale = 1f;
             //blur.enabled = false;
             bgi.SetActive(false);
+            settingsCanvas.SetActive(false);
             blurOut.SetActive(false);
             for (int i = 0; i < documentsList.giongNoiChuyen.Length; i++)
             {
@@ -284,5 +292,42 @@ public class PauseMenuu : MonoBehaviour
     {
         lolUSuring = true;
         lolUSure.SetActive(true);
+    }
+
+    public void SettingsButton()
+    {
+        pauseMenu.SetActive(false);
+        settingsCanvas.SetActive(true);
+        //go back set active true;
+    }
+    public void GraphicsButton()
+    {
+
+    }
+
+    public void AudioButton()
+    {
+
+    }
+
+    public void GameplayButon() 
+    {
+        gameplayOptions.SetActive(true);
+    }
+
+    //? INSIDE GAMEPLAY OPTIONS
+    public void HeadbobOnOff()
+    {
+        if (isHeadbobOn)
+        {
+            RHC_Bob.enabled = false;
+            isHeadbobOn = false;
+        }
+        else
+        {
+            RHC_Bob.enabled = true;
+            isHeadbobOn = true;
+        }
+            
     }
 }

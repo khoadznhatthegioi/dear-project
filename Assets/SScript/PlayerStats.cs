@@ -69,6 +69,12 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
+        //if (!PauseMenuu.isPauseMenuAlreadyOn && !InventoryDisappear.isInventoryAlreadyOn && !DocumentsListDisappear.isListAlreadyOn)
+        //{
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //    Cursor.visible = false;
+        //}
+
         if (!imageLoading)
         {
             if (Resources.FindObjectsOfTypeAll<ImageLoading>().Length > 0)

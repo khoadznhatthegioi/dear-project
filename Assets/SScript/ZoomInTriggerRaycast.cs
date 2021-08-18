@@ -42,7 +42,8 @@ public class ZoomInTriggerRaycast: MonoBehaviour
     public bool laChaiBia;
     public bool laDiary;
     public ZoomInController raycasted_obj;
-
+    public RHC_PlayerControllerDemo rhc;
+    public RHC_BobController rhcb;
     [Header("Key Codes")]
     [SerializeField] private KeyCode openDoorKey = KeyCode.Mouse0;
 
@@ -90,6 +91,11 @@ public class ZoomInTriggerRaycast: MonoBehaviour
         //zoomInChaiBiaCamera.SetActive(false);
         //tuDienLight.SetActive(false);
     }
+    private void Start()
+    {
+        rhc = player.GetComponent<RHC_PlayerControllerDemo>();
+        rhcb = player.GetComponentInChildren<RHC_BobController>();
+    }
     private void Update()
     {
 
@@ -132,6 +138,8 @@ public class ZoomInTriggerRaycast: MonoBehaviour
                             floatingIconTuDien.SetActive(false);
 
                             player.enabled = false;
+                            rhc.enabled = false;
+                            rhcb.enabled = false;
                             //raycasted_obj.gameObject.layer = 0;
                             // //raycasted_obj.GetComponent<BoxCollider>().enabled = false;
                             startRotationPlayer = player.gameObject.transform.eulerAngles.y;
@@ -249,6 +257,8 @@ public class ZoomInTriggerRaycast: MonoBehaviour
                             floatingIconDiary.SetActive(false);
 
                             player.enabled = false;
+                            rhc.enabled = false;
+                            rhcb.enabled = false;
                             //raycasted_obj.gameObject.layer = 0;
                             // //raycasted_obj.GetComponent<BoxCollider>().enabled = false;
                             startRotationPlayer = player.gameObject.transform.eulerAngles.y;

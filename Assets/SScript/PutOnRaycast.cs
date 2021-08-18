@@ -48,8 +48,6 @@ public class PutOnRaycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(raycasted_obj)
-        Debug.Log(raycasted_obj.gameObject.name);
 
         RaycastHit hit;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);

@@ -165,6 +165,7 @@ public class SaveSystem : MonoBehaviour
             PlayerData.isVideoPlayed = false;
             PlayerData.daSua = false;
             PlayerData.daKhuiChaiBia = false;
+            PlayerData.daVeTrenDiary = false;
             playerData.firstSavedInt = 0;
             playerData.secondSavedInt = 0;
             playerData.thirdSavedInt = 0;
@@ -197,6 +198,7 @@ public class SaveSystem : MonoBehaviour
             playerData.isVideoPlayedInt = 0;
             playerData.daSuaInt = 0;
             playerData.daKhuiChaiBiaInt = 0;
+            playerData.daVeTrenDiaryInt = 0;
             DisplayInventory.sceneLoaded = false;
             DisplayInventory.sceneLoaded1 = false;
             DisplayInventory.sceneLoaded2 = false;
@@ -318,6 +320,7 @@ public class PlayerData
     public static bool isVideoPlayed = false;
     public static bool daSua = false;
     public static bool daKhuiChaiBia = false;
+    public static bool daVeTrenDiary = false;
     public static bool firstSaved = false;
     public static bool secondSaved = false;
     public static bool thirdSaved = false;
@@ -352,6 +355,7 @@ public class PlayerData
     public int isVideoPlayedInt = 0;
     public int daSuaInt = 0;
     public int daKhuiChaiBiaInt = 0;
+    public int daVeTrenDiaryInt = 0;
     public int firstSavedInt = 0;
     public int secondSavedInt = 0;
     public int thirdSavedInt = 0;
